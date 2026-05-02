@@ -1,0 +1,136 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Light Theme */
+:root {
+  --color-background-1: #F2F0F1;
+  --color-background-2: #F0EFED;
+  --color-background-3: #F0F0F0;
+
+  --color-foreground: #FFFFFF;
+
+  --color-card: #ffffff;
+  --color-card-foreground: #111827;
+
+  --color-primary: #000000;
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: #e2e8f0;
+  --color-secondary-foreground: #1e293b;
+
+  --color-muted: #cbd5e1;
+  --color-muted-foreground: #475569;
+
+  --color-border: #e2e8f0;
+
+  --color-success: #16a34a;
+  --color-warning: #f59e0b;
+  --color-danger: #dc2626;
+  --color-highlight:blue;
+
+  --radius: 0.75rem;
+}
+
+/* Dark Theme */
+.dark {
+  --color-background-1: #0F172A; 
+  --color-background-2: #111827; 
+  --color-background-3: #1E293B; 
+
+  --color-foreground: #0e2236; 
+
+  --color-card: #111827;
+  --color-card-foreground: #F8FAFC;
+
+  --color-primary: #FFFFFF; 
+  --color-primary-foreground: #000000;
+
+  --color-secondary: #334155;
+  --color-secondary-foreground: #F1F5F9;
+
+  --color-muted: #475569;
+  --color-muted-foreground: #CBD5E1;
+
+  --color-border: #334155;
+
+  --color-success: #22C55E;
+  --color-warning: #FBBF24;
+  --color-danger: #EF4444;
+    --color-highlight:blue;
+}
+/* Base Styling */
+body {
+  background: var(--color-background-1);
+  color: var(--color-primary);
+}
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+/* font installation */
+@font-face {
+  font-family: "Satoshi";
+  src: url("./assets/fonts/Santoshi/Satoshi-Light.woff2") format("woff2");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("./assets/fonts/Santoshi/Satoshi-Regular.woff2") format("woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("./assets/fonts/Santoshi/Satoshi-Medium.woff2") format("woff2");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("./assets/fonts/Santoshi/Satoshi-Bold.woff2") format("woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("./assets/fonts/Santoshi/Satoshi-Black.woff2") format("woff2");
+  font-weight: 900;
+}
+
+/* second font  */
+@font-face {
+  font-family: "Integral CF";
+  src: url("./assets/fonts/IntegralCF/IntegralCF-Regular.woff2") format("woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Integral CF";
+  src: url("./assets/fonts/IntegralCF/IntegralCF-Medium.woff2") format("woff2");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Integral CF";
+  src: url("./assets/fonts/IntegralCF/IntegralCF-Bold.woff2") format("woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Integral CF";
+  src: url("./assets/fonts/IntegralCF/IntegralCF-Heavy.woff2") format("woff2");
+  font-weight: 900;
+}
+/* font installation ends*/
+
+/* custom font classes made by me */
+.font-integral {
+  font-family: "Integral CF", sans-serif;
+}
+
+.font-satoshi {
+  font-family: "Satoshi", sans-serif;
+}
