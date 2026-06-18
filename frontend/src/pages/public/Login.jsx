@@ -1,15 +1,31 @@
 import React, { useState } from "react";
 import { LuLockKeyhole, LuEyeOff, LuEye } from "react-icons/lu";
+import axios from 'axios'
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e) => {
+  const [isLoading,setIsLoading]=useState(false);
+  const [error,setError]=useState(false);
+  const [data,setData]=useState()
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login:", { email, password, rememberMe });
+    const formData = new FormData(e.target)
+    const dataObject = Object.fromEntries(formData.entries())
+    console.log(dataObject)
+
+    setIsLoading(true);
+    try{
+         const response = await axios.post('http://localhost:3000/api/auth/login',dataObject,{ withCredentials: true })
+         console.log("Login successful!", response.data);
+    }catch(err){
+      console.error("Login failed", err);
+    }finally{
+      setIsLoading(false);
+    }
+
+
   };
 
   return (
@@ -39,8 +55,7 @@ const Login = () => {
               </label>
               <input
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                name="email"
                 required
                 className="w-full px-5 py-3 border border-(--color-border) bg-(--color-foreground) rounded-2xl focus:outline-none focus:border-black transition-all text-base"
                 placeholder="you@example.com"
@@ -55,9 +70,8 @@ const Login = () => {
               </div>
               <div className="relative">
                 <input
+                  name="password"
                   type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
                   required
                   className="w-full px-5 py-3 border border-(--color-border) bg-(--color-foreground) rounded-2xl focus:outline-none focus:border-black transition-all text-base"
                   placeholder="••••••••"
@@ -74,16 +88,41 @@ const Login = () => {
 
             {/* Remember Me */}
             <label className="flex items-center  justify-between cursor-pointer">
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  checked={rememberMe}
-                  onChange={() => setRememberMe(!rememberMe)}
-                  className="w-5 h-5 accent-black cursor-pointer"
-                />
-                <span className="text-sm font-medium text-(--color-primary)-700">
-                  Remember me
-                </span>
+              <div className="flex items-center gap-6">
+                {/* User Radio Button */}
+                <div className="flex items-center gap-2">
+                  <input
+                    type="radio"
+                    id="role-user"
+                    name="role"
+                    value="user"
+                    defaultChecked // This makes 'user' the default selection on load
+                    className="w-5 h-5 accent-black cursor-pointer"
+                  />
+                  <label
+                    htmlFor="role-user"
+                    className="text-sm font-medium text-(--color-primary)-700 cursor-pointer"
+                  >
+                    User
+                  </label>
+                </div>
+
+                {/* Admin Radio Button */}
+                <div className="flex items-center gap-2">
+                  <input
+                    type="radio"
+                    id="role-admin"
+                    name="role"
+                    value="admin"
+                    className="w-5 h-5 accent-black cursor-pointer"
+                  />
+                  <label
+                    htmlFor="role-admin"
+                    className="text-sm font-medium text-(--color-primary)-700 cursor-pointer"
+                  >
+                    Admin
+                  </label>
+                </div>
               </div>
               <a
                 href="#"
@@ -100,7 +139,7 @@ const Login = () => {
             >
               SIGN IN
             </button>
-            {/* google login button */}
+            {/* google login button
             <button
               type="button"
               onClick={() => console.log("Google Login clicked")}
@@ -108,7 +147,7 @@ const Login = () => {
             >
              <img className="h-6 w-6" src="src/assets/google-logo.svg" alt="" />
               <span>Sign in with Google</span>
-            </button>
+            </button> */}
 
             {/* Sign Up Link */}
             <div className="text-center">
