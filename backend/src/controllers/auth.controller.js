@@ -82,12 +82,25 @@ const loginUser = async (req, res) => {
       }
     });
   } catch (err) {
+    console.log(err)
     console.error(err);
     res.status(500).json({ message: err.message });
   }
 };
 
-// 3. VERIFY FUNCTION
+//3.LOGOUT FUNCTION
+const logoutUser = async (req,res) =>{
+  res.clearCookie('auth_token', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production', // true if on HTTPS, false if on localhost
+        sameSite: 'lax', 
+        path: '/' 
+    });
+
+    return res.status(200).json({ message: "Successfully logged out. Cookie destroyed." });
+}
+
+// 4. VERIFY FUNCTION
 const verifyUser = async (req, res) => {
 
   const token = req.cookies.auth_token;
@@ -111,4 +124,4 @@ const verifyUser = async (req, res) => {
   });
 };
 
-export { registerUser, loginUser, verifyUser };
+export { registerUser, loginUser,logoutUser, verifyUser };

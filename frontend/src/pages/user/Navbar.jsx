@@ -1,72 +1,55 @@
-import React, { useEffect, useState } from 'react'
-import { LuShoppingCart,LuSearch,LuCircleUserRound,LuSun,LuMoon,LuMenu} from "react-icons/lu";
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { 
+  LuMap, 
+  LuTriangleAlert, 
+  LuShieldAlert, 
+  LuRadio, 
+  LuBrainCircuit 
+} from "react-icons/lu";
 
 const Navbar = () => {
+  const location = useLocation();
+  const isActive = (path) => location.pathname === path;
 
-  // dark and light mood logic
-  const [isDark,setIsDark]=useState(false);
-  //check on load that the mood is dark or light
-  useEffect(()=>{
-    const savedTheme = localStorage.getItem("theme")
-    if(savedTheme==="dark")
-    {
-      setIsDark(true);
-    }
-  },[])
-  //now the function to toggle the mood
-  const toggleTheme = ()=>{
-    document.documentElement.classList.toggle("dark");
-    const darkMode = document.documentElement.classList.contains("dark");
-    setIsDark(darkMode);
-    localStorage.setItem("theme", darkMode ? "dark" : "light");
-  }
-  //dark and light mood logic ends here
+  const navItems = [
+    { path: '/user/crime-map', label: 'Map', icon: <LuMap size={24} /> },
+    { path: '/user/report-crime', label: 'Report', icon: <LuTriangleAlert size={24} /> },
+    { path: '/user/geo-fence', label: 'Fence', icon: <LuShieldAlert size={24} /> },
+    { path: '/user/broadcast', label: 'Alerts', icon: <LuRadio size={24} /> },
+    { path: '/user/ai-assistant', label: 'AI', icon: <LuBrainCircuit size={24} /> },
+  ];
 
   return (
-    <nav className="w-full h-14 md:h-16 flex items-center justify-between md:justify-evenly border-y border-black bg-(--color-foreground)">
-    {/* Left Section */}
-    <div className="flex items-center  h-full">
-      {/* menu toggle button for mobile */}
-      <div className='text-2xl md:hidden flex items-center justify-center w-10'>
-        <button><LuMenu /></button>
-      </div>
-      {/* Logo */}
-      <div className='h-full flex items-center'>
-       <div className="font-integral text-2xl md:text-3xl font-bold h-9 md:h-11 ">GUARDLENS</div>
-      </div>
-    </div>
+    <nav className="md:hidden absolute bottom-0 w-full bg-(--color-background-1) border-t border-(--color-border) shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-40 pb-[env(safe-area-inset-bottom)] px-1 font-satoshi transition-colors duration-300">
+      <div className="flex justify-around items-center h-16">
+        
+        {navItems.map((item) => {
+          const active = isActive(item.path);
+          
+          return (
+            <Link 
+              key={item.path}
+              to={item.path} 
+              className={`flex flex-col items-center justify-center w-full h-full space-y-1 transition-all
+                ${active ? 'text-(--color-highlight)' : 'text-(--color-muted-foreground) hover:text-(--color-primary)'}`}
+            >
+              {/* Icon Container with a tiny bounce effect when active */}
+              <div className={`transition-transform duration-200 ${active ? 'scale-110' : 'scale-100'}`}>
+                {item.icon}
+              </div>
+              
+              {/* Tiny text label */}
+              <span className={`text-[10px] tracking-wide transition-all ${active ? 'font-bold' : 'font-medium'}`}>
+                {item.label}
+              </span>
+            </Link>
+          );
+        })}
 
-  {/* Middle Section */}
-   <div className="flex items-center gap-8 ">
-      {/* Nav Links */}
-      <ul className="hidden md:flex items-center md:gap-2 lg:gap-6 text-sm font-medium">
-        <li className="flex items-center gap-1 cursor-pointer">
-          Services
-          <span>⌄</span>
-        </li>
-        <li className="cursor-pointer">On Sale</li>
-        <li className="cursor-pointer">New Services</li>
-        <li className="cursor-pointer">Providers</li>
-      </ul>
-      {/* search bar */}
-      <div className='hidden md:flex bg-(--color-background-3) items-center justify-start  h-10 md:w-50 lg:w-96 rounded-full '>
-          <div className='text-gray-500 text-xl h-8 w-12 flex items-center justify-center rounded-full'><LuSearch/></div>
-          <div className='text-sm'>
-            <input type="text" placeholder='Search for products...' className='outline-none w-full'/>
-          </div>
       </div>
-    </div>
-
-  {/* Right Section */}
-   <div className="flex items-center gap-4 text-2xl md:text-xl w-38">
-      <button className="md:hidden shrink-0"><LuSearch /></button>
-      <button className='shrink-0'><LuShoppingCart /></button>
-      <button className='shrink-0' onClick={toggleTheme}>{isDark?<LuSun />:<LuMoon />}</button>
-      <button className='shrink-0'><LuCircleUserRound /></button>
-   </div>
-
-</nav>
-  )
+    </nav>
+  );
 }
 
-export default Navbar
+export default Navbar;

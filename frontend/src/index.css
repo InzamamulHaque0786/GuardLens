@@ -1,5 +1,21 @@
 @import "tailwindcss";
+@import 'leaflet/dist/leaflet.css';
 @custom-variant dark (&:where(.dark, .dark *));
+
+html, body, #root {
+  
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden; 
+  overscroll-behavior-y: none; 
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+}
+input, textarea {
+  -webkit-user-select: auto;
+  user-select: auto;
+}
 
 /* Light Theme */
 :root {
