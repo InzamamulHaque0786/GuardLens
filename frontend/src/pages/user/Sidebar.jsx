@@ -51,7 +51,7 @@ const Sidebar = () => {
     <aside 
       className={`hidden md:flex flex-col h-full border-r transition-all duration-300 ease-in-out z-10 font-satoshi
         bg-(--color-foreground) border-(--color-border) shadow-sm relative
-        ${isOpen ? 'w-64' : 'w-20'}`}
+        ${isOpen ? 'w-64' : 'w-18'}`}
     >
     
       <div className="p-4 flex items-center justify-between border-b border-(--color-border) h-16 min-h-16">
