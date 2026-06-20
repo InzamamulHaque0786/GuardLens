@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { LuLockKeyhole, LuEyeOff, LuEye } from "react-icons/lu";
-import api from "../../api/API"; // FIX: Imported your centralized API instance!
+import api from "../../api/API"; 
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null); // FIX: Initialized as null instead of false
+  const [error, setError] = useState(null); 
 
   const { setUser } = useAuth();
   const navigate = useNavigate();
@@ -21,17 +21,11 @@ const Login = () => {
     setError(null); // Clear any old errors when they try again
 
     try {
-      // FIX: Used your centralized API file. No need for full URL or withCredentials flag here!
       const response = await api.post('/auth/login', dataObject);
-      
-      // FIX: Set the exact user object, not the whole response!
       setUser(response.data.user);
-      
-      // FIX: Send them to the root URL and let App.jsx decide where they belong
       navigate('/');
     } catch (err) {
       console.error("Login failed", err);
-      // FIX: Extract the backend error message and save it to state
       setError(err.response?.data?.message || "Invalid email or password");
     } finally {
       setIsLoading(false);
@@ -57,7 +51,7 @@ const Login = () => {
             </p>
           </div>
 
-          {/* FIX: Display the error message to the user if one exists */}
+          {/* Display the error message to the user if one exists */}
           {error && (
             <div className="mb-4 p-3 bg-red-50 text-red-500 border border-red-200 rounded-xl text-sm text-center">
               {error}
@@ -74,7 +68,7 @@ const Login = () => {
                 type="email"
                 name="email"
                 required
-                disabled={isLoading} // Optional: prevent typing while loading
+                disabled={isLoading} 
                 className="w-full px-5 py-3 border border-(--color-border) bg-(--color-foreground) rounded-2xl focus:outline-none focus:border-black transition-all text-base"
                 placeholder="you@example.com"
               />
@@ -113,12 +107,12 @@ const Login = () => {
             {/* Sign In Button */}
             <button
               type="submit"
-              disabled={isLoading} // FIX: Disable button while waiting for backend
+              disabled={isLoading} // Disable button while waiting for backend
               className={`w-full transition-all text-(--color-secondary) py-4 rounded-full font-medium text-lg tracking-wider mt-2 font-integral ${
                 isLoading ? "bg-gray-400 cursor-not-allowed" : "bg-(--color-primary)"
               }`}
             >
-              {/* FIX: Change text to show activity */}
+              {/*Change text to show activity */}
               {isLoading ? "LOGGING IN..." : "SIGN IN"}
             </button>
 

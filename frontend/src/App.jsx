@@ -20,9 +20,14 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import ManageUsers from './pages/admin/ManageUsers';
 
 // --- USER PAGES ---
-import UserHome from './pages/user/UserHome';
-import UserProfile from './pages/user/UserProfile';
 import CrimeMap from './pages/user/CrimeMap';
+import ReportCrime from './pages/user/ReportCrime';
+import GeoFence from './pages/user/GeoFence';
+import Broadcast from './pages/user/Broadcast';
+import AIassist from './pages/user/AIassist';
+import Settings from './pages/user/Settings';
+import UserProfile from './pages/user/UserProfile';
+
 
 const RootRedirect = () => {
   const { user } = useAuth();
@@ -59,9 +64,13 @@ const App = () => {
        {/* the user routes */}
       <Route path="/user" element={<UserGuard><UserLayout /></UserGuard>}>
         {/* These render exactly where the <Outlet /> is inside UserLayout */}
-        <Route path="home" element={<UserHome />} />
-        <Route path="profile" element={<UserProfile />} />
         <Route path="crime-map" element={<CrimeMap/>} />
+        <Route path="report-crime" element={<ReportCrime/>} />
+        <Route path="geo-fence" element={<GeoFence/>} />
+        <Route path="broadcast" element={<Broadcast/>} />
+        <Route path="ai-assistant" element={<AIassist/>} />
+        <Route path="settings" element={<Settings/>} />
+        <Route path="profile" element={<UserProfile />} />
       </Route>
 
       {/* page not found route(catch all) */}

@@ -9,7 +9,7 @@ export default function PublicGuard({ children }) {
     if (user.role === 'admin') {
       return <Navigate to="/admin/dashboard" replace />;
     }
-    return <Navigate to="/user/home" replace />;
+    return <Navigate to="/user/crime-map" replace />;
   }
 
   // If they are NOT logged in, let them see the login/register page

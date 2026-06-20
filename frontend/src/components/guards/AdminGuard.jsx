@@ -11,7 +11,7 @@ export default function AdminGuard({ children }) {
 
   // Is the logged-in person just a regular user? If yes, kick them to the User Home page.
   if (user.role !== 'admin') {
-    return <Navigate to="/user/home" replace />;
+    return <Navigate to="/user/crime-map" replace />;
   }
   // They passed the checks! Render the Admin page.
   return children;
