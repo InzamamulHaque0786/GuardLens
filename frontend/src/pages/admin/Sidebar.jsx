@@ -10,7 +10,10 @@ import {
   LuBrainCircuit, 
   LuSettings,
   LuMoon,
-  LuClipboardList
+  LuSquarePower,
+  LuReceipt,
+  LuClipboardList,
+  LuLayoutDashboard
 } from "react-icons/lu";
 
 const Sidebar = () => {
@@ -28,12 +31,11 @@ const Sidebar = () => {
   }, []);
 
   const navigationItems = [
-    { path: '/user/crime-map', label: 'Crime Map', icon: <LuMap size={22} /> },
-    { path: '/user/report-crime', label: 'Report Crime', icon: <LuTriangleAlert size={22} /> },
-    { path: '/user/reports', label: 'My Reports', icon: <LuClipboardList size={22} /> },
-    { path: '/user/broadcast', label: 'Broadcast', icon: <LuRadio size={22} /> },
-    { path: '/user/ai-assistant', label: 'AI Assistant', icon: <LuBrainCircuit size={22} /> },
-    { path: '/user/settings', label: 'Settings', icon: <LuSettings size={22} /> },
+    { path: '/admin/dashboard', label: 'Dashboard', icon: <LuLayoutDashboard size={22} /> },
+    { path: '/admin/crime-map', label: 'Crime Map', icon: <LuMap size={22} /> },
+    { path: '/admin/crime-report', label: 'Crime Reports', icon: <LuClipboardList size={22} /> },
+    { path: '/admin/broadcast-message', label: 'Broadcast Message', icon: <LuRadio size={22} /> },
+    { path: '/admin/settings', label: 'Settings', icon: <LuSettings size={22} /> },
   ];
 
   const toggleDarkMode = () => {
