@@ -16,17 +16,24 @@ import Login from './pages/public/Login';
 import Register from './pages/public/Register';
 
 // --- ADMIN PAGES ---
-import AdminDashboard from './pages/admin/AdminDashboard';
-import ManageUsers from './pages/admin/ManageUsers';
+import Dashboard from './pages/admin/Dashboard';
+import AdminCrimeMap from './pages/admin/CrimeMap';
+import CrimeReports from './pages/admin/CrimeReports';
+import BroadcastMessage from './pages/admin/BroadcastMessage';
+import AdminSettings from './pages/admin/AdminSettings';
+import AdminProfile from './pages/admin/AdminProfile'
 
 // --- USER PAGES ---
 import CrimeMap from './pages/user/CrimeMap';
 import ReportCrime from './pages/user/ReportCrime';
+import MyReports from './pages/user/MyReports';
+import MyReportDetails from './pages/user/MyReportDetails';
 import GeoFence from './pages/user/GeoFence';
 import Broadcast from './pages/user/Broadcast';
 import AIassist from './pages/user/AIassist';
 import Settings from './pages/user/Settings';
 import UserProfile from './pages/user/UserProfile';
+import DetailedReport from './pages/admin/DetailedReport';
 
 
 const RootRedirect = () => {
@@ -57,8 +64,15 @@ const App = () => {
        {/* the admin routes */}
       <Route path="/admin" element={<AdminGuard><AdminLayout /></AdminGuard>}>
         {/* These render exactly where the <Outlet /> is inside AdminLayout */}
-        <Route path="dashboard" element={<AdminDashboard />} />
-        <Route path="manage-users" element={<ManageUsers />} />
+        <Route path="dashboard" element={<Dashboard/>} />
+        <Route path="crime-map" element={<AdminCrimeMap/>} />
+        <Route path="crime-report" element={<CrimeReports/>} />
+        <Route path="broadcast-message" element={<BroadcastMessage/>} />
+        <Route path="settings" element={<AdminSettings/>} />
+        <Route path="profile" element={<AdminProfile/>} />
+        <Route path="report/:id" element={<DetailedReport/>} />
+        
+        
       </Route>
 
        {/* the user routes */}
@@ -66,6 +80,8 @@ const App = () => {
         {/* These render exactly where the <Outlet /> is inside UserLayout */}
         <Route path="crime-map" element={<CrimeMap/>} />
         <Route path="report-crime" element={<ReportCrime/>} />
+        <Route path="reports" element={<MyReports/>} />
+        <Route path="report/:id" element={<MyReportDetails/>} />
         <Route path="geo-fence" element={<GeoFence/>} />
         <Route path="broadcast" element={<Broadcast/>} />
         <Route path="ai-assistant" element={<AIassist/>} />

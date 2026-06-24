@@ -5,8 +5,10 @@ import {
   LuTriangleAlert, 
   LuShieldAlert, 
   LuRadio, 
-  LuBrainCircuit ,
-  LuClipboardList
+  LuBrainCircuit, 
+  LuLayoutDashboard,
+  LuClipboardList,
+  LuSettings
 } from "react-icons/lu";
 
 const Navbar = () => {
@@ -14,11 +16,10 @@ const Navbar = () => {
   const isActive = (path) => location.pathname === path;
 
   const navItems = [
-    { path: '/user/crime-map', label: 'Map', icon: <LuMap size={24} /> },
-    { path: '/user/report-crime', label: 'Report', icon: <LuTriangleAlert size={24} /> },
-    { path: '/user/reports', label: 'My Reports', icon: <LuClipboardList size={24} /> },
-    { path: '/user/broadcast', label: 'Alerts', icon: <LuRadio size={24} /> },
-    { path: '/user/ai-assistant', label: 'AI', icon: <LuBrainCircuit size={24} /> },
+    { path: '/admin/dashboard', label: 'Dashboard', icon: <LuLayoutDashboard size={24} /> },
+    { path: '/admin/crime-map', label: 'Crime Map', icon: <LuMap size={24} /> },
+    { path: '/admin/crime-report', label: 'Crime Reports', icon: <LuClipboardList size={24} /> },
+    { path: '/admin/broadcast-message', label: 'Broadcast', icon: <LuRadio size={24} /> },
   ];
 
   return (
