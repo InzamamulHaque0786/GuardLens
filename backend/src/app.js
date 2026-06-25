@@ -2,6 +2,7 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 import authRoute from '../src/routes/auth.route.js'
 import crimeRoute from '../src/routes/crime.route.js'
+import aiRoute from '../src/routes/ai.route.js'
 import cors from 'cors'
 
 const app = express()
@@ -16,5 +17,6 @@ app.use(cors({
 
 app.use('/api/auth',authRoute)
 app.use('/api/crime',crimeRoute)
+app.use('/api/ai',aiRoute)
 
 export default app;

@@ -22,6 +22,7 @@ import CrimeReports from './pages/admin/CrimeReports';
 import BroadcastMessage from './pages/admin/BroadcastMessage';
 import AdminSettings from './pages/admin/AdminSettings';
 import AdminProfile from './pages/admin/AdminProfile'
+import DetailedReport from './pages/admin/DetailedReport'
 
 // --- USER PAGES ---
 import CrimeMap from './pages/user/CrimeMap';
@@ -33,7 +34,7 @@ import Broadcast from './pages/user/Broadcast';
 import AIassist from './pages/user/AIassist';
 import Settings from './pages/user/Settings';
 import UserProfile from './pages/user/UserProfile';
-import DetailedReport from './pages/admin/DetailedReport';
+import ReviewReport from './pages/user/ReviewReport';
 
 
 const RootRedirect = () => {
@@ -85,6 +86,7 @@ const App = () => {
         <Route path="geo-fence" element={<GeoFence/>} />
         <Route path="broadcast" element={<Broadcast/>} />
         <Route path="ai-assistant" element={<AIassist/>} />
+        <Route path="review-report" element={<ReviewReport/>} />
         <Route path="settings" element={<Settings/>} />
         <Route path="profile" element={<UserProfile />} />
       </Route>
