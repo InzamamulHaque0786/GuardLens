@@ -42,7 +42,7 @@ const RootRedirect = () => {
   
   if (!user) return <Navigate to="/login" replace />;
   if (user.role === 'admin') return <Navigate to="/admin/dashboard" replace />;
-  return <Navigate to="/user/home" replace />;
+  return <Navigate to="/user/crime-map" replace />;
 };
 
 
