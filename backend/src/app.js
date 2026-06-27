@@ -9,6 +9,7 @@ import authRoute from '../src/routes/auth.route.js'
 import crimeRoute from '../src/routes/crime.route.js'
 import aiRoute from '../src/routes/ai.route.js'
 import broadcastRoute from '../src/routes/broadcast.route.js'
+import userRoute from '../src/routes/user.route.js';
 
 const app = express()
 const server = http.createServer(app);//for socket.io
@@ -49,5 +50,6 @@ app.use('/api/auth',authRoute)
 app.use('/api/crime',crimeRoute)
 app.use('/api/ai',aiRoute)
 app.use('/api/broadcast', broadcastRoute);
+app.use('/api/user', userRoute);
 
 export {app,server};
