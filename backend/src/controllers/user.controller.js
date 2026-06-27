@@ -7,11 +7,9 @@ export const getUserProfile = async (req, res) => {
         // req.user comes from your verifyJWT middleware
         // .select('-password') ensures we never send the password hash to the frontend
         const user = await userModel.findById(req.user.id).select('-password');
-        
         if (!user) {
             return res.status(404).json({ success: false, message: "User not found." });
         }
-
         return res.status(200).json({ success: true, data: user });
     } catch (error) {
         console.error("Get Profile Error:", error);

@@ -10,6 +10,7 @@ import crimeRoute from '../src/routes/crime.route.js'
 import aiRoute from '../src/routes/ai.route.js'
 import broadcastRoute from '../src/routes/broadcast.route.js'
 import userRoute from '../src/routes/user.route.js';
+import adminDashboard from '../src/routes/dashboard.route.js'
 
 const app = express()
 const server = http.createServer(app);//for socket.io
@@ -51,5 +52,6 @@ app.use('/api/crime',crimeRoute)
 app.use('/api/ai',aiRoute)
 app.use('/api/broadcast', broadcastRoute);
 app.use('/api/user', userRoute);
+app.use('/api/dashboard', adminDashboard);
 
 export {app,server};
