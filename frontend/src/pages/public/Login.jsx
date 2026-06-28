@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { LuLockKeyhole, LuEyeOff, LuEye } from "react-icons/lu";
-import api from "../../api/API"; 
+import api from "../../api/API";
 import { useAuth } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null); 
+  const [error, setError] = useState(null);
 
   const { setUser } = useAuth();
   const navigate = useNavigate();
@@ -16,14 +16,14 @@ const Login = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const dataObject = Object.fromEntries(formData.entries());
-    
+
     setIsLoading(true);
     setError(null); // Clear any old errors when they try again
 
     try {
-      const response = await api.post('/auth/login', dataObject);
+      const response = await api.post("/auth/login", dataObject);
       setUser(response.data.user);
-      navigate('/');
+      navigate("/");
     } catch (err) {
       console.error("Login failed", err);
       setError(err.response?.data?.message || "Invalid email or password");
@@ -68,7 +68,7 @@ const Login = () => {
                 type="email"
                 name="email"
                 required
-                disabled={isLoading} 
+                disabled={isLoading}
                 className="w-full px-5 py-3 border border-(--color-border) bg-(--color-foreground) rounded-2xl focus:outline-none focus:border-black transition-all text-base"
                 placeholder="you@example.com"
               />
@@ -101,7 +101,12 @@ const Login = () => {
 
             {/* Remember Me */}
             <label className="flex items-center justify-between cursor-pointer">
-              <a href="#" className="text-sm text-(--color-highlight) hover:underline">Forgot Password?</a>
+              <a
+                href="#"
+                className="text-sm text-(--color-highlight) hover:underline"
+              >
+                Forgot Password?
+              </a>
             </label>
 
             {/* Sign In Button */}
@@ -109,7 +114,9 @@ const Login = () => {
               type="submit"
               disabled={isLoading} // Disable button while waiting for backend
               className={`w-full transition-all text-(--color-secondary) py-4 rounded-full font-medium text-lg tracking-wider mt-2 font-integral ${
-                isLoading ? "bg-gray-400 cursor-not-allowed" : "bg-(--color-primary)"
+                isLoading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-(--color-primary)"
               }`}
             >
               {/*Change text to show activity */}
@@ -121,12 +128,12 @@ const Login = () => {
               <span className="text-gray-600 text-sm">
                 Don't have an account?{" "}
               </span>
-              <a
-                href="#"
+              <Link
+                to="/register"
                 className="text-sm text-(--color-highlight) hover:underline"
               >
                 Create Account
-              </a>
+              </Link>
             </div>
           </form>
         </div>

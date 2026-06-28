@@ -3,7 +3,6 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 html, body, #root {
-  
   height: 100dvh;
   width: 100%;
   overflow: hidden; 
@@ -12,77 +11,128 @@ html, body, #root {
   -webkit-user-select: none;
   user-select: none;
 }
+
 input, textarea {
   -webkit-user-select: auto;
   user-select: auto;
 }
 
-/* Light Theme */
+/* =========================================
+   LIGHT THEME
+========================================= */
 :root {
+  /* --- LEGACY VARIABLES (To be deleted later) --- */
   --color-background-1: #F2F0F1;
   --color-background-2: #F0EFED;
   --color-background-3: #F0F0F0;
-
   --color-foreground: #FFFFFF;
-
   --color-card: #ffffff;
   --color-card-foreground: #111827;
-
   --color-primary: #000000;
   --color-primary-foreground: #ffffff;
-
   --color-secondary: #e2e8f0;
   --color-secondary-foreground: #1e293b;
-
   --color-muted: #cbd5e1;
   --color-muted-foreground: #475569;
-
   --color-border: #e2e8f0;
-
   --color-success: #16a34a;
   --color-warning: #f59e0b;
   --color-danger: #dc2626;
-  --color-highlight:blue;
-
+  --color-highlight: blue;
   --radius: 0.75rem;
+
+  /* --- NEW GUARDLENS DESIGN SYSTEM --- */
+  /* Backgrounds & Surfaces */
+  --gl-bg-base: #F8FAFC; 
+  --gl-bg-surface: #FFFFFF;
+  --gl-bg-surface-hover: #F1F5F9;
+  
+  /* Typography */
+  --gl-text-main: #0F172A;
+  --gl-text-muted: #64748B;
+  --gl-text-inverse: #FFFFFF;
+  
+  /* Brand & Actions */
+  --gl-brand-primary: #1D4ED8; /* Deep Royal Blue */
+  --gl-brand-hover: #1E40AF;
+  
+  /* Emergency (Strictly Red) */
+  --gl-sos-base: #DC2626;
+  --gl-sos-pulse: #FECACA;
+  
+  /* Statuses */
+  --gl-status-success: #16A34A;
+  --gl-status-warning: #D97706;
+  
+  /* Borders */
+  --gl-border-light: #E2E8F0;
+  --gl-border-focus: #3B82F6;
 }
 
-/* Dark Theme */
+/* =========================================
+   DARK THEME
+========================================= */
 .dark {
+  /* --- LEGACY VARIABLES (To be deleted later) --- */
   --color-background-1: #0F172A; 
   --color-background-2: #111827; 
   --color-background-3: #1E293B; 
-
   --color-foreground: #0e2236; 
-
   --color-card: #111827;
   --color-card-foreground: #F8FAFC;
-
   --color-primary: #FFFFFF; 
   --color-primary-foreground: #000000;
-
   --color-secondary: #334155;
   --color-secondary-foreground: #F1F5F9;
-
   --color-muted: #475569;
   --color-muted-foreground: #CBD5E1;
-
   --color-border: #334155;
-
   --color-success: #22C55E;
   --color-warning: #FBBF24;
   --color-danger: #EF4444;
-    --color-highlight:blue;
+  --color-highlight: blue;
+
+  /* --- NEW GUARDLENS DESIGN SYSTEM --- */
+  /* Backgrounds & Surfaces */
+  --gl-bg-base: #020617; 
+  --gl-bg-surface: #0F172A;
+  --gl-bg-surface-hover: #1E293B;
+  
+  /* Typography */
+  --gl-text-main: #F8FAFC;
+  --gl-text-muted: #94A3B8;
+  --gl-text-inverse: #FFFFFF;
+  
+  /* Brand & Actions */
+  --gl-brand-primary: #3B82F6; /* Lighter Blue for visibility */
+  --gl-brand-hover: #60A5FA;
+  
+  /* Emergency (Strictly Red) */
+  --gl-sos-base: #EF4444;
+  --gl-sos-pulse: #7F1D1D;
+  
+  /* Statuses */
+  --gl-status-success: #22C55E;
+  --gl-status-warning: #F59E0B;
+  
+  /* Borders */
+  --gl-border-light: #334155;
+  --gl-border-focus: #60A5FA;
 }
-/* Base Styling */
+
+/* =========================================
+   BASE STYLING & FONTS
+========================================= */
 body {
-  background: var(--color-background-1);
-  color: var(--color-primary);
+  /* Using the new base variable */
+  background: var(--gl-bg-base);
+  color: var(--gl-text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 ::selection {
-  background: var(--color-primary);
-  color: var(--color-primary-foreground);
+  background: var(--gl-brand-primary);
+  color: var(--gl-text-inverse);
 }
 
 /* font installation */
@@ -91,25 +141,21 @@ body {
   src: url("./assets/fonts/Santoshi/Satoshi-Light.woff2") format("woff2");
   font-weight: 300;
 }
-
 @font-face {
   font-family: "Satoshi";
   src: url("./assets/fonts/Santoshi/Satoshi-Regular.woff2") format("woff2");
   font-weight: 400;
 }
-
 @font-face {
   font-family: "Satoshi";
   src: url("./assets/fonts/Santoshi/Satoshi-Medium.woff2") format("woff2");
   font-weight: 500;
 }
-
 @font-face {
   font-family: "Satoshi";
   src: url("./assets/fonts/Santoshi/Satoshi-Bold.woff2") format("woff2");
   font-weight: 700;
 }
-
 @font-face {
   font-family: "Satoshi";
   src: url("./assets/fonts/Santoshi/Satoshi-Black.woff2") format("woff2");
@@ -122,31 +168,26 @@ body {
   src: url("./assets/fonts/IntegralCF/IntegralCF-Regular.woff2") format("woff2");
   font-weight: 400;
 }
-
 @font-face {
   font-family: "Integral CF";
   src: url("./assets/fonts/IntegralCF/IntegralCF-Medium.woff2") format("woff2");
   font-weight: 500;
 }
-
 @font-face {
   font-family: "Integral CF";
   src: url("./assets/fonts/IntegralCF/IntegralCF-Bold.woff2") format("woff2");
   font-weight: 700;
 }
-
 @font-face {
   font-family: "Integral CF";
   src: url("./assets/fonts/IntegralCF/IntegralCF-Heavy.woff2") format("woff2");
   font-weight: 900;
 }
-/* font installation ends*/
 
 /* custom font classes made by me */
 .font-integral {
   font-family: "Integral CF", sans-serif;
 }
-
 .font-satoshi {
   font-family: "Satoshi", sans-serif;
 }
