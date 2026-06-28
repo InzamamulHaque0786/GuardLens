@@ -11,6 +11,7 @@ import aiRoute from '../src/routes/ai.route.js'
 import broadcastRoute from '../src/routes/broadcast.route.js'
 import userRoute from '../src/routes/user.route.js';
 import adminDashboard from '../src/routes/dashboard.route.js'
+import sosRoute from '../src/routes/sos.route.js';
 
 const app = express()
 const server = http.createServer(app);//for socket.io
@@ -53,5 +54,8 @@ app.use('/api/ai',aiRoute)
 app.use('/api/broadcast', broadcastRoute);
 app.use('/api/user', userRoute);
 app.use('/api/dashboard', adminDashboard);
+app.use('/api/sos', sosRoute);
+
+
 
 export {app,server};
