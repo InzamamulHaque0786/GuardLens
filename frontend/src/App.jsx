@@ -35,6 +35,7 @@ import AIassist from './pages/user/AIassist';
 import Settings from './pages/user/Settings';
 import UserProfile from './pages/user/UserProfile';
 import ReviewReport from './pages/user/ReviewReport';
+import SOSPanel from './pages/user/SOSPanel';
 
 
 const RootRedirect = () => {
@@ -89,6 +90,7 @@ const App = () => {
         <Route path="review-report" element={<ReviewReport/>} />
         <Route path="settings" element={<Settings/>} />
         <Route path="profile" element={<UserProfile />} />
+        <Route path="sospanel" element={<SOSPanel/>} />
       </Route>
 
       {/* page not found route(catch all) */}
