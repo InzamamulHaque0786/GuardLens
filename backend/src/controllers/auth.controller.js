@@ -5,9 +5,10 @@ import bcrypt from 'bcryptjs';
 // --- Reusable Cookie Options ---
 const cookieOptions = {
   httpOnly: true, // Prevents XSS attacks
-  secure: process.env.NODE_ENV === 'production', // true in production, false on localhost
-  sameSite: 'lax',
-  maxAge: 10 * 24 * 60 * 60 * 1000 // 10 days in milliseconds
+  secure:true, // true in production, false on localhost
+  sameSite: 'none',
+  // sameSite: 'lax',
+  maxAge: 24 * 60 * 60 * 1000 // 1 days in milliseconds
 };
 
 // 1. REGISTER FUNCTION
@@ -93,8 +94,9 @@ const loginUser = async (req, res) => {
 const logoutUser = async (req,res) =>{
   res.clearCookie('auth_token', {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production', // true if on HTTPS, false if on localhost
-        sameSite: 'lax', 
+        secure: true, // true if on HTTPS, false if on localhost
+        sameSite: 'none', 
+        // sameSite: 'lax', 
         path: '/' 
     });
 

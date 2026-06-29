@@ -43,7 +43,10 @@ export default function Broadcast() {
 
     // 2. Open the real-time WebSocket connection to your backend
     // IMPORTANT: Make sure this matches your backend port (usually 5000)
-    const socket = io("http://localhost:3000"); 
+    // const socket = io("http://localhost:3000"); 
+    const socket = io("https://guardlens-v0cv.onrender.com", {
+    withCredentials: true
+});
 
     // 3. Listen for the 'receive_broadcast' event from the Admin
     socket.on("receive_broadcast", (newBroadcast) => {
