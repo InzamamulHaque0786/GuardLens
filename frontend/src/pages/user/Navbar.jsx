@@ -8,6 +8,7 @@ import {
   LuBrainCircuit ,
   LuClipboardList
 } from "react-icons/lu";
+import { RiChatAiLine } from "react-icons/ri";
 
 const Navbar = () => {
   const location = useLocation();
@@ -18,11 +19,11 @@ const Navbar = () => {
     { path: '/user/report-crime', label: 'Report', icon: <LuTriangleAlert size={24} /> },
     { path: '/user/reports', label: 'My Reports', icon: <LuClipboardList size={24} /> },
     { path: '/user/broadcast', label: 'Alerts', icon: <LuRadio size={24} /> },
-    { path: '/user/ai-assistant', label: 'AI', icon: <LuBrainCircuit size={24} /> },
+    { path: '/user/ai-assistant', label: 'AI Assistant', icon: <RiChatAiLine size={24} /> },
   ];
 
   return (
-    <nav className="md:hidden absolute bottom-0 w-full bg-(--color-background-1) border-t border-(--color-border) shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-40 pb-[env(safe-area-inset-bottom)] px-1 font-satoshi transition-colors duration-300">
+    <nav className="md:hidden absolute bottom-0 w-full bg-(--gl-bg-surface) border-t border-(--gl-border-light) shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-40 pb-[env(safe-area-inset-bottom)] px-1 font-satoshi transition-colors duration-300">
       <div className="flex justify-around items-center h-16">
         
         {navItems.map((item) => {
@@ -33,7 +34,7 @@ const Navbar = () => {
               key={item.path}
               to={item.path} 
               className={`flex flex-col items-center justify-center w-full h-full space-y-1 transition-all
-                ${active ? 'text-(--color-highlight)' : 'text-(--color-muted-foreground) hover:text-(--color-primary)'}`}
+                ${active ? 'text-(--gl-brand-primary)' : 'text-(--gl-text-muted) hover:text-(--gl-text-main)'}`}
             >
               {/* Icon Container with a tiny bounce effect when active */}
               <div className={`transition-transform duration-200 ${active ? 'scale-110' : 'scale-100'}`}>

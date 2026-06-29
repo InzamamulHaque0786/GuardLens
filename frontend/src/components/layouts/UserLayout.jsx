@@ -5,7 +5,7 @@ import ProfileWidget from '../../pages/user/ProfileWidget.jsx';
 
 export default function UserLayout() {
   return (
-    <div className="flex h-[100dvh] w-full bg-(--color-background-1) overflow-hidden relative">
+    <div className="flex h-[100dvh] w-full  overflow-hidden relative">
       
       <Sidebar/>
       {/* MAIN CONTENT AREA (The Map Canvas) */}

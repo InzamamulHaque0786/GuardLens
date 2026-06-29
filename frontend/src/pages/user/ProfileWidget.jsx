@@ -47,49 +47,50 @@ export default function ProfileWidget() {
 
   return (
     <div className="absolute top-4 right-4 z-[60]" ref={dropdownRef}>
-      {/* 1. THE CIRCULAR AVATAR BUTTON              */}
+      {/* 1. THE CIRCULAR AVATAR BUTTON */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center h-12 w-12 rounded-full border border-(--color-border) bg-(--color-background-1) shadow-md overflow-hidden hover:opacity-80 transition-all focus:outline-none"
+        className="flex items-center justify-center h-12 w-12 rounded-full border-2 border-(--gl-border-focus) bg-(--gl-bg-base) shadow-md overflow-hidden  transition-all focus:outline-none"
       >
-        {user?.avatarUrl ? (
-          <img src={user.avatarUrl} alt="Profile" className="h-full w-full object-cover" />
+        {user?.profileImage ? (
+          <img src={user.profileImage} alt="Profile" className="h-full w-full object-cover" />
         ) : (
-          <span className="text-lg font-bold text-(--color-highlight) bg-(--color-background-2) h-full w-full flex items-center justify-center font-satoshi">
+          <span className="text-lg font-bold text-(--gl-brand-primary) bg-(--gl-bg-surface) h-full w-full flex items-center justify-center font-satoshi">
             {initial}
           </span>
         )}
       </button>
+      
       {/* 2. THE MENU (Full Screen Mobile / Popover Desktop) */}
       {isOpen && (
         <div className={`
-          fixed inset-0 flex flex-col bg-(--color-background-1) z-[100] transition-all font-satoshi
-          md:absolute md:inset-auto md:right-0 md:top-full md:mt-3 md:w-72 md:rounded-3xl md:shadow-2xl md:border md:border-(--color-border) md:z-50
+          fixed inset-0 flex flex-col bg-(--gl-bg-base) z-[100] transition-all font-satoshi
+          md:absolute md:inset-auto md:right-0 md:top-full md:mt-3 md:w-72 md:rounded-2xl md:shadow-2xl md:border md:border-(--gl-border-light) md:z-50
         `}>
           
           {/* Mobile-Only Header with Close Button */}
-          <div className="flex md:hidden justify-between items-center p-5 border-b border-(--color-border)">
-            <h2 className="font-integral font-bold text-xl text-(--color-primary)">Menu</h2>
+          <div className="flex md:hidden justify-between items-center p-5 border-b border-(--gl-border-light)">
+            <h2 className="font-integral font-bold text-xl text-(--gl-text-main)">Menu</h2>
             <button 
               onClick={() => setIsOpen(false)} 
-              className="p-2 bg-(--color-background-2) rounded-full text-(--color-primary) active:scale-95 transition-transform"
+              className="p-2 bg-(--gl-bg-surface) rounded-full text-(--gl-text-main) active:scale-95 transition-transform"
             >
               <LuX size={20} />
             </button>
           </div>
 
           {/* User Info Header */}
-          <div className="p-6 md:p-5 border-b border-(--color-border) bg-(--color-background-2) md:rounded-t-3xl flex items-center gap-4">
-            <div className="h-14 w-14 md:h-12 md:w-12 rounded-full bg-(--color-background-1) border border-(--color-border) flex items-center justify-center overflow-hidden shrink-0">
-               {user?.avatarUrl ? (
-                <img src={user.avatarUrl} alt="Profile" className="h-full w-full object-cover" />
+          <div className=" p-6 md:p-5 border-b border-(--gl-border-light) bg-(--gl-bg-surface) md:rounded-t-3xl flex flex-col items-center text-center gap-4">
+            <div className="h-22 w-22 md:h-20 md:w-20 rounded-full bg-(--gl-bg-base) border-2 border-(--gl-border-focus) flex items-center justify-center overflow-hidden shrink-0">
+               {user?.profileImage ? (
+                <img src={user.profileImage} alt="Profile" className="h-full w-full object-cover" />
               ) : (
-                <span className="text-lg font-bold text-(--color-highlight)">{initial}</span>
+                <span className="text-lg font-bold text-(--gl-brand-primary)">{initial}</span>
               )}
             </div>
             <div className="overflow-hidden">
-              <p className="font-bold text-lg md:text-base text-(--color-primary) truncate">{user?.name}</p>
-              <p className="text-sm text-(--color-muted-foreground) truncate">{user?.email}</p>
+              <p className="font-bold text-lg md:text-base text-(--gl-text-main) truncate">{user?.name}</p>
+              <p className="text-sm text-(--gl-text-muted) truncate">{user?.email}</p>
             </div>
           </div>
           
@@ -98,35 +99,35 @@ export default function ProfileWidget() {
             <Link
               to={user?.role === 'admin' ? '/admin/dashboard' : '/user/profile'}
               onClick={() => setIsOpen(false)}
-              className="flex items-center gap-3 px-4 py-3 md:py-2 text-base md:text-sm font-medium text-(--color-primary) hover:bg-(--color-background-2) rounded-xl transition-colors"
+              className="flex items-center gap-3 px-4 py-3 md:py-2 text-base md:text-sm font-medium text-(--gl-text-main) hover:bg-(--gl-bg-surface-hover) rounded-xl transition-colors"
             >
-              <LuUser size={20} className="text-(--color-muted-foreground)" />
+              <LuUser size={20} className="text-(--gl-text-muted)" />
               View Profile
             </Link>
 
             <Link
               to="/user/settings"
               onClick={() => setIsOpen(false)}
-              className="flex md:hidden items-center gap-3 px-4 py-3 md:py-2 text-base md:text-sm font-medium text-(--color-primary) hover:bg-(--color-background-2) rounded-xl transition-colors"
+              className="flex md:hidden items-center gap-3 px-4 py-3 md:py-2 text-base md:text-sm font-medium text-(--gl-text-main) hover:bg-(--gl-bg-surface-hover) rounded-xl transition-colors"
             >
-              <LuSettings size={20} className="text-(--color-muted-foreground)" />
+              <LuSettings size={20} className="text-(--gl-text-muted)" />
               Settings
             </Link>
             
             <button
               onClick={toggleDarkMode}
-              className="flex md:hidden items-center w-full text-left gap-3 px-4 py-3 md:py-2 text-base md:text-sm font-medium text-(--color-primary) hover:bg-(--color-background-2) rounded-xl transition-colors"
+              className="flex md:hidden items-center w-full text-left gap-3 px-4 py-3 md:py-2 text-base md:text-sm font-medium text-(--gl-text-main) hover:bg-(--gl-bg-surface-hover) rounded-xl transition-colors"
             >
-              <LuMoon size={20} className="text-(--color-muted-foreground)" />
+              <LuMoon size={20} className="text-(--gl-text-muted)" />
               Toggle Theme
             </button>
           </div>
 
           {/* Logout Section */}
-          <div className="p-4 border-t border-(--color-border) mt-auto md:mt-0">
+          <div className="p-4 border-t border-(--gl-border-light) mt-auto md:mt-0">
             <button
               onClick={handleLogout}
-              className="flex items-center justify-center gap-2 w-full px-4 py-4 md:py-3 text-base md:text-sm font-bold text-(--color-danger) bg-red-50 dark:bg-red-950/30 hover:bg-red-100 dark:hover:bg-red-900/50 rounded-xl transition-colors"
+              className="flex items-center justify-center gap-2 w-full px-4 py-4 md:py-3 text-base md:text-sm font-bold text-(--gl-text-muted) hover:text-(--gl-text-main) hover:bg-(--gl-bg-surface-hover) border-1 rounded-xl transition-colors"
             >
               <LuLogOut size={20} />
               Sign Out

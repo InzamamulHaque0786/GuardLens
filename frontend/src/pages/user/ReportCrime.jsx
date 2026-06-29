@@ -169,6 +169,7 @@ export default function ReportCrime() {
     }
     //my code
   };
+
    // Invisible component to track center coordinates when dragging stops
 function MapDragTracker({ onDragEnd }) {
   useMapEvents({
@@ -197,18 +198,19 @@ const fetchAddress = async (lat, lng) => {
       setIsResolvingAddress(false);
     }
   };
+  
   if (submitted) {
     return (
-      <div className="h-full w-full flex flex-col items-center justify-center p-6 bg-(--color-background-1) font-satoshi text-center">
-        <LuCircleCheck size={64} className="text-green-500 mb-4" />
-        <h2 className="text-2xl font-bold text-(--color-primary) mb-2">Report Secured</h2>
+      <div className="h-full w-full flex flex-col items-center justify-center p-6 bg-(--gl-bg-base) font-satoshi text-center">
+        <LuCircleCheck size={64} className="text-(--gl-status-success) mb-4" />
+        <h2 className="text-2xl font-bold text-(--gl-text-main) mb-2">Report Secured</h2>
         <button 
           onClick={() => { 
             setStep(1); setSubmitted(false); setPreviews({ images: [], video: null });
             // Resetting time here as well
             setFormData({ category: '', location: null, time: '', role: "victim", description: '', images: [], video: null }); 
           }} 
-          className="mt-8 px-6 py-3 bg-(--color-highlight) text-white font-bold rounded-xl"
+          className="mt-8 px-6 py-3 bg-(--gl-brand-primary) text-(--gl-text-inverse) font-bold rounded-xl"
         >
           OK
         </button>
@@ -217,28 +219,26 @@ const fetchAddress = async (lat, lng) => {
   }
 
   return (
-    // NEW: Updated max-w-2xl to max-w-4xl lg:max-w-5xl for much better desktop scaling
-    <div className="h-full w-full flex flex-col bg-(--color-background-1) font-satoshi max-w-4xl lg:max-w-5xl mx-auto p-4 md:p-8 lg:p-12 relative">
+    <div className="h-full w-full flex flex-col bg-(--gl-bg-base) font-satoshi   mx-auto p-4 md:p-8 lg:p-12 relative">
       <div className="flex items-center mb-6">
-        {step > 1 && <button onClick={prevStep} className="p-2 mr-4 rounded-full hover:bg-(--color-background-2) text-(--color-primary)"><LuChevronLeft size={24} /></button>}
+        {step > 1 && <button onClick={prevStep} className="p-2 mr-4 rounded-full hover:bg-(--gl-bg-surface-hover) text-(--gl-text-main)"><LuChevronLeft size={24} /></button>}
         <div>
-          <h1 className="text-2xl font-integral font-bold text-(--color-primary)">Report Crime</h1>
-          <p className="text-sm text-(--color-muted-foreground)">Step {step} of 3</p>
+          <h1 className="text-2xl font-integral font-bold text-(--gl-text-main)">Report Crime</h1>
+          <p className="text-sm text-(--gl-text-muted)">Step {step} of 3</p>
         </div>
       </div>
 
-      <div className="w-full bg-(--color-background-2) h-2 rounded-full mb-6 overflow-hidden">
-        <div className="bg-(--color-highlight) h-full transition-all duration-300" style={{ width: `${(step / 3) * 100}%` }}></div>
+      <div className="w-full bg-(--gl-bg-surface-hover) h-2 rounded-full mb-6 overflow-hidden">
+        <div className="bg-(--gl-brand-primary) h-full transition-all duration-300" style={{ width: `${(step / 3) * 100}%` }}></div>
       </div>
 
       {step === 1 && (
-        // NEW: Added md:grid-cols-4 lg:grid-cols-5 so categories span beautifully across desktop
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 overflow-y-auto pb-4">
           {categories.map((cat) => (
-            <button key={cat.id} onClick={() => handleCategorySelect(cat.id)} className="flex flex-col items-center p-4 border border-(--color-border) rounded-xl hover:border-(--color-highlight) hover:bg-blue-50 dark:hover:bg-blue-900/20 text-(--color-primary) text-center transition-all">
-              <div className="text-(--color-highlight) mb-2">{cat.icon}</div>
+            <button key={cat.id} onClick={() => handleCategorySelect(cat.id)} className="flex flex-col items-center p-4 border border-(--gl-border-light) rounded-xl hover:border-(--gl-brand-primary) hover:bg-(--gl-bg-surface-hover) text-(--gl-text-main) text-center transition-all">
+              <div className="text-(--gl-brand-primary) mb-2">{cat.icon}</div>
               <span className="font-bold text-sm">{cat.label}</span>
-              <span className="text-xs text-(--color-muted-foreground) mt-1 leading-tight">{cat.desc}</span>
+              <span className="text-xs text-(--gl-text-muted) mt-1 leading-tight">{cat.desc}</span>
             </button>
           ))}
         </div>
@@ -250,16 +250,16 @@ const fetchAddress = async (lat, lng) => {
           {!showMap ? (
             // The Initial Buttons
             <div className="flex flex-col gap-4 max-w-2xl mx-auto w-full mt-8">
-              <button onClick={handleCurrentLocation} className="flex items-center justify-center gap-4 p-5 w-full bg-(--color-highlight) text-white rounded-2xl transition-opacity hover:opacity-90">
+              <button onClick={handleCurrentLocation} className="flex items-center justify-center gap-4 p-5 w-full bg-(--gl-brand-primary) text-(--gl-text-inverse) rounded-2xl transition-opacity hover:opacity-90">
                 <LuMapPin size={24} /> <span className="font-bold">Use Current Location</span>
               </button>
-              <button onClick={() => setShowMap(true)} className="flex items-center justify-center gap-4 p-5 w-full border border-(--color-border) text-(--color-primary) rounded-2xl transition-colors hover:bg-(--color-background-2)">
+              <button onClick={() => setShowMap(true)} className="flex items-center justify-center gap-4 p-5 w-full border border-(--gl-border-light) text-(--gl-text-main) rounded-2xl transition-colors hover:bg-(--gl-bg-surface-hover)">
                 <LuMapPin size={24} /> <span className="font-bold">Choose on Map</span>
               </button>
             </div>
           ) : (
             // The Map UI
-            <div className="flex flex-col h-full w-full relative rounded-xl overflow-hidden border border-(--color-border)">
+            <div className="flex flex-col h-full w-full relative rounded-xl overflow-hidden border border-(--gl-border-light)">
               
               {/* The Interactive Map */}
               <div className="flex-1 w-full relative z-0">
@@ -275,15 +275,15 @@ const fetchAddress = async (lat, lng) => {
 
                 {/* The Fixed Center Pin (The "Uber" Magic) */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000] pointer-events-none drop-shadow-xl pb-6">
-                  <LuMapPin size={48} className="text-red-500" fill="white" />
+                  <LuMapPin size={48} className="text-(--gl-sos-base)" fill="white" />
                 </div>
               </div>
 
               {/* The Bottom Action Card */}
-              <div className="bg-(--color-background-1) p-4 z-10 shadow-lg border-t border-(--color-border)">
+              <div className="bg-(--gl-bg-surface) p-4 z-10 shadow-lg border-t border-(--gl-border-light)">
                 <div className="mb-4">
-                  <p className="text-xs text-(--color-muted-foreground) font-bold uppercase mb-1">Selected Location</p>
-                  <p className={`text-sm md:text-base font-medium ${isResolvingAddress ? 'animate-pulse text-(--color-highlight)' : 'text-(--color-primary)'}`}>
+                  <p className="text-xs text-(--gl-text-muted) font-bold uppercase mb-1">Selected Location</p>
+                  <p className={`text-sm md:text-base font-medium ${isResolvingAddress ? 'animate-pulse text-(--gl-brand-primary)' : 'text-(--gl-text-main)'}`}>
                     {geocodedAddress}
                   </p>
                 </div>
@@ -291,7 +291,7 @@ const fetchAddress = async (lat, lng) => {
                 <button 
                   onClick={nextStep}
                   disabled={isResolvingAddress || !formData.location}
-                  className={`w-full p-4 rounded-xl font-bold transition-all ${isResolvingAddress || !formData.location ? 'bg-gray-300 text-gray-500 cursor-not-allowed dark:bg-gray-800' : 'bg-(--color-highlight) text-white hover:opacity-90'}`}
+                  className={`w-full p-4 rounded-xl font-bold transition-all ${isResolvingAddress || !formData.location ? 'bg-(--gl-bg-surface-hover) text-(--gl-text-muted) cursor-not-allowed' : 'bg-(--gl-brand-primary) text-(--gl-text-inverse) hover:opacity-90'}`}
                 >
                   Confirm Location
                 </button>
@@ -305,77 +305,77 @@ const fetchAddress = async (lat, lng) => {
       {step === 3 && (
         <form onSubmit={handleSubmit} className="flex flex-col h-full pb-20 overflow-y-auto">
           <div className="flex gap-4 mb-6 shrink-0">
-            <button type="button" onClick={() => setFormData({ ...formData, role: 'victim' })} className={`flex-1 py-3 px-4 rounded-xl font-bold border ${formData.role === 'victim' ? 'border-red-500 text-red-500 bg-red-50 dark:bg-red-900/20' : 'border-(--color-border) text-(--color-primary)'}`}>I am Victim</button>
-            <button type="button" onClick={() => setFormData({ ...formData, role: 'spectator' })} className={`flex-1 py-3 px-4 rounded-xl font-bold border ${formData.role === 'spectator' ? 'border-blue-500 text-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-(--color-border) text-(--color-primary)'}`}>I am Spectator</button>
+            <button type="button" onClick={() => setFormData({ ...formData, role: 'victim' })} className={`flex-1 py-3 px-4 rounded-xl font-bold border ${formData.role === 'victim' ? 'border-(--gl-sos-base) text-(--gl-sos-base) bg-(--gl-sos-pulse)' : 'border-(--gl-border-light) text-(--gl-text-main)'}`}>I am Victim</button>
+            <button type="button" onClick={() => setFormData({ ...formData, role: 'spectator' })} className={`flex-1 py-3 px-4 rounded-xl font-bold border ${formData.role === 'spectator' ? 'border-(--gl-brand-primary) text-(--gl-brand-primary) bg-(--gl-bg-surface-hover)' : 'border-(--gl-border-light) text-(--gl-text-main)'}`}>I am Spectator</button>
           </div>
 
           {formData.role && (
-            <div className="flex flex-col flex-1 shrink-0">
+            <div className="flex flex-col flex-1 shrink-0 px-1">
               
               {/* NEW: Time Input Block */}
               <div className="flex flex-col mb-6 shrink-0">
-                <label className="font-bold text-(--color-primary) mb-2">When did this happen?</label>
+                <label className="font-bold text-(--gl-text-main) mb-2">When did this happen?</label>
                 <input 
                   type="datetime-local" 
                   value={formData.time}
                   onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-                  className="w-full p-4 rounded-xl border border-(--color-border) bg-(--color-background-1) text-(--color-primary) focus:ring-2 focus:ring-(--color-highlight) outline-none"
+                  className="w-full p-3 rounded-xl border border-(--gl-border-light) bg-(--gl-bg-surface) text-(--gl-text-main) focus:ring-1 focus:ring-(--gl-border-focus) outline-none"
                 />
               </div>
 
               <div className="flex justify-between items-end mb-2">
-                <label className="font-bold text-(--color-primary)">Description</label>
+                <label className="font-bold text-(--gl-text-main)">Description</label>
                 {isDescriptionRequired ? (
-                  <span className={`text-xs ${formData.description.length >= 20 ? 'text-green-500' : 'text-red-500'}`}>{formData.description.length}/20 chars req</span>
-                ) : <span className="text-xs text-(--color-muted-foreground)">Optional</span>}
+                  <span className={`text-xs ${formData.description.length >= 20 ? 'text-(--gl-status-success)' : 'text-(--gl-sos-base)'}`}>{formData.description.length}/20 chars req</span>
+                ) : <span className="text-xs text-(--gl-text-muted)">Optional</span>}
               </div>
-              <textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} className="w-full p-4 rounded-xl border border-(--color-border) bg-(--color-background-1) text-(--color-primary) h-24 mb-6 shrink-0 outline-none focus:ring-2 focus:ring-(--color-highlight)" />
+              <textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} className="w-full p-4 rounded-xl border border-(--gl-border-light) bg-(--gl-bg-surface) text-(--gl-text-main) h-24 mb-6 shrink-0 outline-none focus:ring-1 focus:ring-(--gl-border-focus)" />
 
               <div className="flex justify-between items-end mb-2">
-                <label className="font-bold text-(--color-primary)">Evidence (Images: {formData.images.length}/5 | Video: {formData.video ? '1' : '0'}/1)</label>
-                {formData.role === 'spectator' && <span className="text-xs text-red-500">* 1 Image Required</span>}
+                <label className="font-bold text-(--gl-text-main)">Evidence (Images: {formData.images.length}/5 | Video: {formData.video ? '1' : '0'}/1)</label>
+                {formData.role === 'spectator' && <span className="text-xs text-(--gl-sos-base)">* 1 Image Required</span>}
               </div>
 
               <div className="flex gap-4 mb-4 shrink-0">
-                <label className={`flex-1 border-2 border-dashed border-(--color-border) rounded-xl p-4 flex flex-col items-center justify-center text-center transition-colors ${formData.images.length >= 5 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:bg-(--color-background-2)'}`}>
+                <label className={`flex-1 border-2 border-dashed border-(--gl-border-light) rounded-xl p-4 flex flex-col items-center justify-center text-center transition-colors ${formData.images.length >= 5 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:bg-(--gl-bg-surface-hover)'}`}>
                   <input type="file" accept="image/*" multiple className="hidden" disabled={formData.images.length >= 5} onChange={handleImageChange} />
-                  <LuCamera size={24} className="text-(--color-muted-foreground)" />
-                  <span className="text-sm font-bold text-(--color-primary) mt-2">Add Image</span>
+                  <LuCamera size={24} className="text-(--gl-text-muted)" />
+                  <span className="text-sm font-bold text-(--gl-text-main) mt-2">Add Image</span>
                 </label>
 
-                <label className={`flex-1 border-2 border-dashed border-(--color-border) rounded-xl p-4 flex flex-col items-center justify-center text-center transition-colors ${formData.video ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:bg-(--color-background-2)'}`}>
+                <label className={`flex-1 border-2 border-dashed border-(--gl-border-light) rounded-xl p-4 flex flex-col items-center justify-center text-center transition-colors ${formData.video ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:bg-(--gl-bg-surface-hover)'}`}>
                   <input type="file" accept="video/*" className="hidden" disabled={formData.video} onChange={handleVideoChange} />
-                  <LuVideo size={24} className="text-(--color-muted-foreground)" />
-                  <span className="text-sm font-bold text-(--color-primary) mt-2">Add Video</span>
+                  <LuVideo size={24} className="text-(--gl-text-muted)" />
+                  <span className="text-sm font-bold text-(--gl-text-main) mt-2">Add Video</span>
                 </label>
               </div>
 
               <div className="flex flex-wrap gap-3 mb-6 shrink-0">
                 {previews.images.map((url, i) => (
-                  <div key={i} className="relative w-16 h-16 rounded-lg overflow-hidden border border-(--color-border)">
+                  <div key={i} className="relative w-16 h-16 rounded-lg overflow-hidden border border-(--gl-border-light)">
                     <img src={url} alt="upload" className="w-full h-full object-cover" />
-                    <button type="button" onClick={() => removeImage(i)} className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1"><LuTrash2 size={12} /></button>
+                    <button type="button" onClick={() => removeImage(i)} className="absolute top-1 right-1 bg-(--gl-sos-base) text-(--gl-text-inverse) rounded-full p-1"><LuTrash2 size={12} /></button>
                   </div>
                 ))}
                 {previews.video && (
-                  <div className="relative w-16 h-16 rounded-lg overflow-hidden border border-(--color-border) bg-black flex items-center justify-center">
-                    <LuVideo size={24} className="text-white" />
-                    <button type="button" onClick={removeVideo} className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1"><LuTrash2 size={12} /></button>
+                  <div className="relative w-16 h-16 rounded-lg overflow-hidden border border-(--gl-border-light) bg-black flex items-center justify-center">
+                    <LuVideo size={24} className="text-(--gl-text-inverse)" />
+                    <button type="button" onClick={removeVideo} className="absolute top-1 right-1 bg-(--gl-sos-base) text-(--gl-text-inverse) rounded-full p-1"><LuTrash2 size={12} /></button>
                   </div>
                 )}
               </div>
 
-{error && (
-  <div className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-xl text-sm font-bold flex items-center gap-2">
-    <LuTriangleAlert size={20} />
-    {error}
-  </div>
-)}
+              {error && (
+                <div className="mb-4 p-4 bg-(--gl-sos-pulse) border border-(--gl-sos-base) text-(--gl-sos-base) rounded-xl text-sm font-bold flex items-center gap-2">
+                  <LuTriangleAlert size={20} />
+                  {error}
+                </div>
+              )}
 
               <button 
                 type="submit"
                 disabled={!isStep3Valid() || isSubmitting}
-                className={`w-full mt-auto py-4 rounded-xl font-bold text-lg transition-all shrink-0 ${!isStep3Valid() ? 'bg-gray-300 text-gray-500 cursor-not-allowed dark:bg-gray-800' : 'bg-(--color-highlight) text-white hover:opacity-90'}`}
+                className={`w-full mt-auto py-4 rounded-xl font-bold text-lg transition-all shrink-0 ${!isStep3Valid() ? 'bg-(--gl-bg-surface-hover) text-(--gl-text-muted) cursor-not-allowed' : 'bg-(--gl-brand-primary) text-(--gl-text-inverse) hover:opacity-90'}`}
               >
                 {isSubmitting ? 'Transmitting...' : 'Submit to Police'}
               </button>

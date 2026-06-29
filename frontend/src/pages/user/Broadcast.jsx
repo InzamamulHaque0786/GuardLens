@@ -106,60 +106,60 @@ export default function Broadcast() {
 
   if (!userLocation || loadingMsg) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-(--color-background-1) p-4 text-center font-satoshi text-(--color-primary)">
-        <LuRadioReceiver size={48} className="text-red-500 animate-pulse mb-4" />
+      <div className="min-h-screen flex flex-col items-center justify-center bg-(--gl-bg-base) p-4 text-center font-satoshi text-(--gl-text-main)">
+        <LuRadioReceiver size={48} className="text-(--gl-sos-base) animate-pulse mb-4" />
         <h2 className="text-xl font-bold">{loadingMsg}</h2>
       </div>
     );
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-4 md:p-8 font-satoshi text-(--color-primary)">
+    <div className="max-w-3xl mx-auto p-4 md:p-8 font-satoshi text-(--gl-text-main)">
       
-      <div className="flex items-center justify-between mb-8 border-b border-(--color-border) pb-4">
+      <div className="flex items-center justify-between mb-8 border-b border-(--gl-border-light) pb-4">
         <div>
-          <h1 className="text-3xl font-integral font-bold text-red-600 flex items-center gap-3">
+          <h1 className="text-3xl font-integral font-bold text-(--gl-sos-base) flex items-center gap-3">
             <LuShieldAlert size={32} /> Local Alerts
           </h1>
-          <p className="text-(--color-muted-foreground) mt-2 font-medium flex items-center gap-1">
+          <p className="text-(--gl-text-muted) mt-2 font-medium flex items-center gap-1">
             <LuMapPin size={16} /> Scanning your immediate area
           </p>
         </div>
         
         {/* Live Indicator */}
-        <div className="flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1.5 rounded-full text-sm font-bold shadow-sm">
-          <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-ping"></div>
+        <div className="flex items-center gap-2 bg-(--gl-bg-surface) border border-(--gl-border-light) text-(--gl-status-success) px-3 py-1.5 rounded-full text-sm font-bold shadow-sm">
+          <div className="w-2.5 h-2.5 bg-(--gl-status-success) rounded-full animate-ping"></div>
           Live Feed
         </div>
       </div>
 
       <div className="flex flex-col gap-6">
         {alerts.length === 0 ? (
-          <div className="bg-(--color-background-2) border border-(--color-border) rounded-2xl p-10 text-center flex flex-col items-center">
-            <LuShieldAlert size={48} className="text-green-500 mb-4" />
+          <div className="bg-(--gl-bg-surface) border border-(--gl-border-light) rounded-2xl p-10 text-center flex flex-col items-center">
+            <LuShieldAlert size={48} className="text-(--gl-status-success) mb-4" />
             <h3 className="text-xl font-bold">No Active Alerts</h3>
-            <p className="text-(--color-muted-foreground) mt-2">Your area is currently clear. Any emergency broadcasts in your radius will appear here instantly.</p>
+            <p className="text-(--gl-text-muted) mt-2">Your area is currently clear. Any emergency broadcasts in your radius will appear here instantly.</p>
           </div>
         ) : (
           alerts.map((alert) => (
-            <div key={alert._id} className="bg-red-50 border-l-4 border-red-600 rounded-r-2xl p-5 md:p-6 shadow-sm flex flex-col gap-3 transition-all hover:shadow-md">
+            <div key={alert._id} className="bg-(--gl-sos-pulse) border-l-4 border-(--gl-sos-base) rounded-r-2xl p-5 md:p-6 shadow-sm flex flex-col gap-3 transition-all hover:shadow-md">
               
               <div className="flex justify-between items-start gap-4">
-                <h3 className="text-xl font-bold text-red-700 leading-tight">{alert.title}</h3>
-                <span className="flex items-center gap-1 text-xs font-bold text-red-500 bg-red-100 px-2 py-1 rounded-md shrink-0">
+                <h3 className="text-xl font-bold text-(--gl-sos-base) leading-tight">{alert.title}</h3>
+                <span className="flex items-center gap-1 text-xs font-bold text-(--gl-sos-base) bg-(--gl-bg-base) px-2 py-1 rounded-md shrink-0">
                   <LuClock size={12} /> 
                   {new Date(alert.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </span>
               </div>
               
-              <p className="text-red-900 font-medium leading-relaxed">
+              <p className="text-(--gl-text-main) font-medium leading-relaxed">
                 {alert.message}
               </p>
 
               {/* Audio Player if the admin attached a voice note */}
               {alert.audioUrl && (
-                <div className="mt-2 bg-white rounded-xl p-3 border border-red-200 flex items-center gap-3">
-                  <LuVolume2 className="text-red-500 shrink-0" size={20} />
+                <div className="mt-2 bg-(--gl-bg-surface) rounded-xl p-3 border border-(--gl-border-light) flex items-center gap-3">
+                  <LuVolume2 className="text-(--gl-sos-base) shrink-0" size={20} />
                   <audio src={alert.audioUrl} controls className="w-full h-10" />
                 </div>
               )}

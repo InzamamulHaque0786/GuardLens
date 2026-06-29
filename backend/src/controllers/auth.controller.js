@@ -29,7 +29,7 @@ const registerUser = async (req, res) => {
     });
 
     const token = JWT.sign(
-      { id: user._id, role: user.role, name: user.name, email: user.email }, 
+      { id: user._id, role: user.role, name: user.name, email: user.email,profileImage:user.profileImage }, 
       process.env.JWT_SECRET,
       { expiresIn: '10d' }
     );
@@ -65,7 +65,7 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ message: "Invalid Credentials" });
     }
     const token = JWT.sign(
-      { id: user._id, role: user.role, name: user.name, email: user.email }, 
+      { id: user._id, role: user.role, name: user.name, email: user.email,profileImage:user.profileImage }, 
       process.env.JWT_SECRET,
       { expiresIn: '10d' }
     );
@@ -78,7 +78,8 @@ const loginUser = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
-        role: user.role
+        role: user.role,
+        profileImage:user.profileImage
       }
     });
   } catch (err) {
@@ -118,7 +119,8 @@ const verifyUser = async (req, res) => {
         id: decodedUser.id,
         name: decodedUser.name,
         email: decodedUser.email,
-        role: decodedUser.role
+        role: decodedUser.role,
+        profileImage:decodedUser.profileImage
       } 
     });
   });

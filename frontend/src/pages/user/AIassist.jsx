@@ -128,7 +128,7 @@ export default function AIassist() {
   };
 
   return (
-    <div className="flex flex-row h-[91vh] md:h-[100vh] max-h-[800px] w-full  mx-auto bg-(--color-background-1) border border-(--color-border)  overflow-hidden  font-satoshi relative">
+    <div className="flex flex-row h-[91vh] md:h-[100vh] max-h-[800px] w-full mx-auto bg-(--gl-bg-base) border border-(--gl-border-light) overflow-hidden font-satoshi relative">
      
       {isSidebarOpen && (
         <div 
@@ -136,18 +136,18 @@ export default function AIassist() {
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
-      <div className={`absolute md:relative z-30 flex flex-col w-64 h-full bg-(--color-background-2) border-r border-(--color-border) transition-transform duration-300 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}>
-        <div className="p-4 border-b border-(--color-border) flex items-center justify-between">
-          <h2 className="font-bold text-(--color-primary) flex items-center gap-2">
+      <div className={`absolute md:relative z-30 flex flex-col w-64 h-full bg-(--gl-bg-surface) border-r border-(--gl-border-light) transition-transform duration-300 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}>
+        <div className="p-4 border-b border-(--gl-border-light) flex items-center justify-between">
+          <h2 className="font-bold text-(--gl-text-main) flex items-center gap-2">
             <LuMessageSquare size={18} /> History
           </h2>
-          <button onClick={() => setIsSidebarOpen(false)} className="md:hidden text-(--color-muted-foreground)">
+          <button onClick={() => setIsSidebarOpen(false)} className="md:hidden text-(--gl-text-muted)">
             <LuX size={20} />
           </button>
         </div>
 
         <div className="p-3">
-          <button onClick={startNewChat} className="w-full flex items-center justify-center gap-2 bg-(--color-highlight) text-white font-bold py-2.5 rounded-xl">
+          <button onClick={startNewChat} className="w-full flex items-center justify-center gap-2 bg-(--gl-brand-primary) text-(--gl-text-inverse) font-bold py-2.5 rounded-xl">
             <LuPlus size={18} /> New Chat
           </button>
         </div>
@@ -159,8 +159,8 @@ export default function AIassist() {
               onClick={() => loadSession(chat._id)}
               className={`w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium truncate ${
                 currentSessionId === chat._id
-                  ? "bg-(--color-background-1) border border-(--color-border) text-(--color-primary)"
-                  : "text-(--color-muted-foreground)"
+                  ? "bg-(--gl-bg-surface-hover) border border-(--gl-border-focus) text-(--gl-brand-primary)"
+                  : "text-(--gl-text-muted)"
               }`}
             >
               {chat.title}
@@ -169,50 +169,50 @@ export default function AIassist() {
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col w-full h-full relative z-10 bg-(--color-background-1)">
+      <div className="flex-1 flex flex-col w-full h-full relative z-10 bg-(--gl-bg-base)">
 
-        <div className="flex items-center gap-3 px-6 py-4 bg-(--color-background-2) border-b border-(--color-border)">
+        <div className="flex items-center gap-3 px-6 py-4 bg-(--gl-bg-surface) border-b border-(--gl-border-light)">
           <button 
             onClick={() => setIsSidebarOpen(true)} 
-            className="md:hidden p-2 -ml-2 text-(--color-primary) hover:bg-(--color-background-1) rounded-lg transition-colors"
+            className="md:hidden p-2 -ml-2 text-(--gl-text-main) hover:bg-(--gl-bg-surface-hover) rounded-lg transition-colors"
           >
             <LuMenu size={24} />
           </button>
-          <div className="p-2 bg-(--color-highlight)/10 text-(--color-highlight) rounded-lg">
+          <div className="p-2 bg-(--gl-brand-primary)/10 text-(--gl-brand-primary) rounded-lg">
             <LuShieldAlert size={24} />
           </div>
           <div>
-            <h2 className="text-lg font-bold text-(--color-primary) font-integral">
+            <h2 className="text-lg font-bold text-(--gl-text-main) font-integral">
               GuardLens AI
             </h2>
-            <p className="text-xs text-(--color-muted-foreground) font-medium">
+            <p className="text-xs text-(--gl-text-muted) font-medium">
               Intake & Safety Assistant
             </p>
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6 bg-(--color-background-1)">
+        <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6 bg-(--gl-bg-base)">
           {messages.map((msg, index) => (
             <div key={index} className={`flex gap-4 ${msg.role === "user" ? "flex-row-reverse" : "flex-row"}`}>
-              <div className={`flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full ${msg.role === "user" ? "bg-(--color-highlight) text-white" : "bg-(--color-background-2) border border-(--color-border) text-(--color-primary)"}`}>
+              <div className={`flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full ${msg.role === "user" ? "bg-(--gl-brand-primary) text-(--gl-text-inverse)" : "bg-(--gl-bg-surface) border border-(--gl-border-light) text-(--gl-text-main)"}`}>
                 {msg.role === "user" ? <LuUser size={20} /> : <LuBot size={20} />}
               </div>
 
-              <div className={`max-w-[80%] px-5 py-3 rounded-2xl text-sm md:text-base leading-relaxed ${msg.role === "user" ? "bg-(--color-highlight) text-white rounded-tr-none" : "bg-(--color-background-2) border border-(--color-border) text-(--color-primary) rounded-tl-none whitespace-pre-wrap"}`}>
+              <div className={`max-w-[80%] px-5 py-3 rounded-2xl text-sm md:text-base leading-relaxed ${msg.role === "user" ? "bg-(--gl-brand-primary) text-(--gl-text-inverse) rounded-tr-none" : "bg-(--gl-bg-surface) border border-(--gl-border-light) text-(--gl-text-main) rounded-tl-none whitespace-pre-wrap"}`}>
                 {msg.text}
 
                 {msg.role === "model" && msg.intent === "report_ready" && msg.reportData && (
-                  <div className="mt-4 p-4 bg-(--color-background-1) border border-(--color-border) rounded-xl shadow-sm text-black">
-                    <h4 className="font-bold flex items-center gap-2 text-(--color-primary) mb-3 border-b border-(--color-border) pb-2">
-                      <LuFileText className="text-blue-600" size={18} /> Draft Report Ready
+                  <div className="mt-4 p-4 bg-(--gl-bg-base) border border-(--gl-border-light) rounded-xl shadow-sm text-(--gl-text-main)">
+                    <h4 className="font-bold flex items-center gap-2 text-(--gl-text-main) mb-3 border-b border-(--gl-border-light) pb-2">
+                      <LuFileText className="text-(--gl-brand-primary)" size={18} /> Draft Report Ready
                     </h4>
-                    <div className="flex flex-col gap-2 text-sm text-(--color-muted-foreground) mb-4">
+                    <div className="flex flex-col gap-2 text-sm text-(--gl-text-muted) mb-4">
                       <p><strong>Category:</strong> {msg.reportData.crimeType}</p>
                       <p><strong>Desc:</strong> {msg.reportData.description}</p>
                     </div>
                     <button 
                       onClick={() => navigate('/user/review-report', { state: { prefillData: msg.reportData } })}
-                      className="w-full py-2.5 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+                      className="w-full py-2.5 bg-(--gl-brand-primary) text-(--gl-text-inverse) font-bold rounded-lg hover:bg-(--gl-brand-hover) transition-colors flex items-center justify-center gap-2"
                     >
                       Review & Submit Report
                     </button>
@@ -224,20 +224,20 @@ export default function AIassist() {
 
           {isLoading && (
             <div className="flex gap-4 flex-row">
-              <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-(--color-background-2) border border-(--color-border) text-(--color-primary)">
+              <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-(--gl-bg-surface) border border-(--gl-border-light) text-(--gl-text-main)">
                 <LuBot size={20} />
               </div>
-              <div className="bg-(--color-background-2) border border-(--color-border) px-5 py-4 rounded-2xl rounded-tl-none flex items-center gap-2">
-                <div className="w-2 h-2 bg-(--color-highlight) rounded-full animate-bounce"></div>
-                <div className="w-2 h-2 bg-(--color-highlight) rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
-                <div className="w-2 h-2 bg-(--color-highlight) rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></div>
+              <div className="bg-(--gl-bg-surface) border border-(--gl-border-light) px-5 py-4 rounded-2xl rounded-tl-none flex items-center gap-2">
+                <div className="w-2 h-2 bg-(--gl-brand-primary) rounded-full animate-bounce"></div>
+                <div className="w-2 h-2 bg-(--gl-brand-primary) rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+                <div className="w-2 h-2 bg-(--gl-brand-primary) rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></div>
               </div>
             </div>
           )}
           <div ref={messagesEndRef} />
         </div>
 
-        <form onSubmit={handleSend} className="p-4 bg-(--color-background-2) border-t border-(--color-border) flex gap-3 items-end">
+        <form onSubmit={handleSend} className="p-4 bg-(--gl-bg-surface) border-t border-(--gl-border-light) flex gap-3 items-end">
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -248,10 +248,10 @@ export default function AIassist() {
               }
             }}
             placeholder="Type your message..."
-            className="flex-1 max-h-32 min-h-[52px] bg-(--color-background-1) border border-(--color-border) text-(--color-primary) rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-(--color-highlight) resize-none"
+            className="flex-1 max-h-32 min-h-[52px] bg-(--gl-bg-base) border border-(--gl-border-light) text-(--gl-text-main) rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-(--gl-border-focus) resize-none"
             rows={1}
           />
-          <button type="submit" disabled={isLoading || !input.trim()} className="h-[52px] px-6 bg-(--color-highlight) text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed shrink-0">
+          <button type="submit" disabled={isLoading || !input.trim()} className="h-[52px] px-6 bg-(--gl-brand-primary) text-(--gl-text-inverse) rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed shrink-0">
             <span className="hidden sm:inline">Send</span>
             <LuSend size={18} />
           </button>

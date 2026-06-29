@@ -80,7 +80,7 @@ export const getAllMyReports = async (req, res) => {
     try {
         // Find user's reports, sort by newest, and use .select() to grab only what the list needs
         const myReports = await CrimeModel.find({ reporter: req.user.id })
-            .select('crimeType crimeTime status _id') // The Projection 
+            .select('crimeType crimeTime status _id crimeLocation') // The Projection 
             .sort({ createdAt: -1 }); 
 
         return res.status(200).json({ 
