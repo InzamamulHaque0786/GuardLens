@@ -16,7 +16,7 @@ import sosRoute from '../src/routes/sos.route.js';
 const app = express()
 const server = http.createServer(app);//for socket.io
 
-// NEW: Initialize Socket.io with the exact same CORS settings as your Express app
+// Initialize Socket.io with the exact same CORS settings as your Express app
 const io = new Server(server, {
     cors: {
         origin: ["http://localhost:5173", 'http://10.129.157.143:5173'],
@@ -25,13 +25,13 @@ const io = new Server(server, {
     }
 });
 
-// NEW: Inject 'io' into the request object for your controllers to use
+// Inject 'io' into the request object for your controllers to use
 app.use((req, res, next) => {
     req.io = io;
     next();
 });
 
-// NEW: Listen for real-time connections
+// Listen for real-time connections
 io.on('connection', (socket) => {
     console.log('A user connected to real-time alerts:', socket.id);
     
