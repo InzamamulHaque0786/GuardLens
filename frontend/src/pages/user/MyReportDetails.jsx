@@ -92,10 +92,9 @@ export default function MyReportDetails() {
   }
 
   return (
-    <div className=" min-h-screen w-full bg-(--gl-bg-base) font-satoshi text-(--gl-text-main) pb-20">
+    <div className="h-[94dvh] overflow-auto  w-full bg-(--gl-bg-base) font-satoshi text-(--gl-text-main) pb-20">
       
-      {/* Top Navigation Bar */}
-      <div className="sticky top-0 z-40 bg-(--gl-bg-base)/90 backdrop-blur-md border-b border-(--gl-border-light) px-4 sm:px-8 py-4 flex items-center justify-between">
+       <div className="sticky h-[11dvh] top-0 z-40 bg-(--gl-bg-base)/90 backdrop-blur-md border-b border-(--gl-border-light) px-5 sm:px-8 py-4  flex items-center gap-2">
         <button 
           onClick={() => navigate('/user/reports')}
           className="flex items-center gap-2 text-(--gl-text-muted) hover:text-(--gl-text-main) transition-colors font-medium"
@@ -107,7 +106,20 @@ export default function MyReportDetails() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto p-4 sm:p-8">
+      {/* Top Navigation Bar */}
+      {/* <div className="sticky top-0 z-40 bg-(--gl-bg-base)/90 backdrop-blur-md border-b border-(--gl-border-light) px-4 sm:px-8 py-4 flex items-center justify-between">
+        <button 
+          onClick={() => navigate('/user/reports')}
+          className="flex items-center gap-2 text-(--gl-text-muted) hover:text-(--gl-text-main) transition-colors font-medium"
+        >
+          <LuArrowLeft size={20} /> <span className="hidden sm:inline">Back to List</span>
+        </button>
+        <div className="font-mono text-sm opacity-60 font-bold tracking-widest">
+          CASE #{report._id.slice(-8).toUpperCase()}
+        </div>
+      </div> */}
+      
+      <div className="max-w-7xl  mx-auto p-4 sm:p-8">
         
         {/* Header & Status Section */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-8">
@@ -248,7 +260,7 @@ export default function MyReportDetails() {
           </div>
         </div>
       </div>
-
+        
       {/* Fullscreen Image Modal */}
       {selectedImage && (
         <div className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4">
@@ -264,6 +276,7 @@ export default function MyReportDetails() {
             className="max-w-full max-h-[90vh] object-contain rounded-lg border border-gray-700 shadow-2xl" 
           />
         </div>
+        
       )}
 
     </div>

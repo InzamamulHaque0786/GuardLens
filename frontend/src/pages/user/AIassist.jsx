@@ -128,13 +128,13 @@ export default function AIassist() {
   };
 
   return (
-    <div className="flex flex-row h-[91vh] md:h-[100vh] max-h-[800px] w-full mx-auto bg-(--gl-bg-base) border border-(--gl-border-light) overflow-hidden font-satoshi relative">
+    <div className="flex flex-row h-[92dvh]  md:h-[100vh] max-h-[800px] w-full mx-auto bg-(--gl-bg-base) border border-(--gl-border-light) overflow-hidden font-satoshi relative">
      
       {isSidebarOpen && (
         <div 
           className="absolute inset-0 bg-black/40 backdrop-blur-sm z-20 md:hidden transition-opacity"
           onClick={() => setIsSidebarOpen(false)}
-        />
+        /> 
       )}
       <div className={`absolute md:relative z-30 flex flex-col w-64 h-full bg-(--gl-bg-surface) border-r border-(--gl-border-light) transition-transform duration-300 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}>
         <div className="p-4 border-b border-(--gl-border-light) flex items-center justify-between">
@@ -152,12 +152,12 @@ export default function AIassist() {
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-3 pb-3 flex flex-col gap-1">
+        <div className=" flex-1 overflow-y-auto min-h-0 px-3 pb-3 flex flex-col gap-1">
           {chatList.map((chat) => (
             <button
               key={chat._id}
               onClick={() => loadSession(chat._id)}
-              className={`w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium truncate ${
+              className={`w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium shrink-0 truncate ${
                 currentSessionId === chat._id
                   ? "bg-(--gl-bg-surface-hover) border border-(--gl-border-focus) text-(--gl-brand-primary)"
                   : "text-(--gl-text-muted)"
@@ -171,7 +171,7 @@ export default function AIassist() {
 
       <div className="flex-1 flex flex-col w-full h-full relative z-10 bg-(--gl-bg-base)">
 
-        <div className="flex items-center gap-3 px-6 py-4 bg-(--gl-bg-surface) border-b border-(--gl-border-light)">
+        <div className=" flex items-center gap-3 px-6 py-4 bg-(--gl-bg-surface) border-b border-(--gl-border-light)">
           <button 
             onClick={() => setIsSidebarOpen(true)} 
             className="md:hidden p-2 -ml-2 text-(--gl-text-main) hover:bg-(--gl-bg-surface-hover) rounded-lg transition-colors"
@@ -191,10 +191,10 @@ export default function AIassist() {
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6 bg-(--gl-bg-base)">
+        <div className="flex-1  overflow-y-auto p-6 flex flex-col gap-6 bg-(--gl-bg-base)">
           {messages.map((msg, index) => (
             <div key={index} className={`flex gap-4 ${msg.role === "user" ? "flex-row-reverse" : "flex-row"}`}>
-              <div className={`flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full ${msg.role === "user" ? "bg-(--gl-brand-primary) text-(--gl-text-inverse)" : "bg-(--gl-bg-surface) border border-(--gl-border-light) text-(--gl-text-main)"}`}>
+              <div className={`flex-shrink-0  w-10 h-10 flex items-center justify-center rounded-full ${msg.role === "user" ? "bg-(--gl-brand-primary) text-(--gl-text-inverse)" : "bg-(--gl-bg-surface) border border-(--gl-border-light) text-(--gl-text-main)"}`}>
                 {msg.role === "user" ? <LuUser size={20} /> : <LuBot size={20} />}
               </div>
 

@@ -102,7 +102,7 @@ export default function UserProfile() {
   const memberSince = new Date(user.createdAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 
   return (
-    <div className="max-w-4xl mx-auto p-4 md:p-8 font-satoshi text-(--gl-text-main) pb-20">
+    <div className=" mx-auto p-4 md:p-4 font-satoshi text-(--gl-text-main) pb-20">
       
       {/* Hidden File Input for Avatar */}
       <input 
@@ -114,7 +114,7 @@ export default function UserProfile() {
       />
 
       {/* 1. Hero Section (Identity) */}
-      <div className="bg-(--gl-bg-surface) rounded-3xl p-6 md:p-8 shadow-sm border border-(--gl-border-light) mb-8 flex flex-col md:flex-row items-center md:items-start gap-6 relative overflow-hidden">
+      <div className="bg-(--gl-bg-surface) rounded-3xl p-6 md:p-8 shadow-sm border border-(--gl-border-light) mb-4 flex flex-col md:flex-row items-center md:items-start gap-6 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-24 bg-(--gl-brand-primary)/10 rounded-t-3xl border-b border-(--gl-brand-primary)/20"></div>
         
         {/* Profile Picture with Hover Effect */}
@@ -175,10 +175,10 @@ export default function UserProfile() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         
         {/* Left Column */}
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-4">
           
           {/* 2. Personal & Medical Info */}
           <div className="bg-(--gl-bg-surface) rounded-3xl p-6 shadow-sm border border-(--gl-border-light)">
@@ -244,7 +244,7 @@ export default function UserProfile() {
             </div>
           </div>
 
-          {/* 3. Saved Safe Zones (Static for now until we build the map modal) */}
+          {/* 3. Saved Safe Zones */}
           <div className="bg-(--gl-bg-surface) rounded-3xl p-6 shadow-sm border border-(--gl-border-light)">
              <div className="flex justify-between items-center mb-5 border-b border-(--gl-border-light) pb-3">
               <h2 className="text-xl font-bold font-integral flex items-center gap-2">
@@ -262,7 +262,7 @@ export default function UserProfile() {
         {/* Right Column */}
         <div className="flex flex-col gap-8">
           
-          {/* 4. Emergency Contacts (Static for now until we build the add form) */}
+          {/* 4. Emergency Contacts */}
           <div className="bg-(--gl-bg-surface) rounded-3xl p-6 shadow-sm border border-(--gl-sos-pulse) relative overflow-hidden h-full">
              <div className="flex justify-between items-center mb-5 border-b border-(--gl-sos-pulse) pb-3 relative z-10">
               <h2 className="text-xl font-bold font-integral flex items-center gap-2 text-(--gl-sos-base)">

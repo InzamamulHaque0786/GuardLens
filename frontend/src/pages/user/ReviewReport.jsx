@@ -181,25 +181,22 @@ const [previews, setPreviews] = useState({ images: [], video: null });
   };
 
   return (
-    <div className="min-h-screen bg-(--color-background-1) text-(--color-primary) font-satoshi pb-20 text-black ">
-      <div className="sticky top-0 z-30 bg-white shadow border-b border-gray-200 px-4 py-4 flex items-center justify-between">
+    <div className="h-full w-full bg-(--gl-bg-base) text-(--gl-text-main) font-satoshi pb-30 ">
+      <div className="sticky h-[11dvh] top-0 z-30 bg-(--gl-bg-surface) shadow border-b border-(--gl-border-light) px-4 py-4 flex items-center justify-between">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-gray-600 hover:text-black font-medium"
+          className="flex items-center gap-2 text-(--gl-text-muted) hover:text-(--gl-text-main) font-medium"
         >
           <LuArrowLeft size={20} /> Back to Chat
         </button>
-        <div className="flex items-center gap-2 text-blue-600 font-bold font-integral">
-          <LuShieldAlert /> Review Report
-        </div>
       </div>
 
-      <div className="max-w-3xl mx-auto p-4 sm:p-8 mt-4 bg-yellow-300 h-[80vh] overflow-scroll">
+      <div className=" mx-auto p-4 sm:p-8 h-[80dvh] overflow-auto">
         <div className="mb-8">
           <h1 className="text-2xl md:text-3xl font-integral font-bold mb-2">
             Finalize Details
           </h1>
-          <p className="text-gray-600">
+          <p className="text-(--gl-text-muted)">
             Review the information extracted by GuardLens AI. Edit fields and
             attach evidence before submitting.
           </p>
@@ -207,24 +204,24 @@ const [previews, setPreviews] = useState({ images: [], video: null });
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           {/* role toggle */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 flex flex-col gap-5 shadow-sm">
+          <div className="bg-(--gl-bg-surface) border border-(--gl-border-light) rounded-2xl p-6 flex flex-col gap-5 shadow-sm">
             <div className="flex gap-4 shrink-0">
-            <button type="button" onClick={() => setFormData({ ...formData, role: 'victim' })} className={`flex-1 py-3 px-4 rounded-xl font-bold border ${formData.role === 'victim' ? 'border-red-500 text-red-500 bg-red-50' : 'border-gray-200 text-gray-700 bg-white'}`}>I am Victim</button>
-            <button type="button" onClick={() => setFormData({ ...formData, role: 'spectator' })} className={`flex-1 py-3 px-4 rounded-xl font-bold border ${formData.role === 'spectator' ? 'border-blue-500 text-blue-500 bg-blue-50' : 'border-gray-200 text-gray-700 bg-white'}`}>I am Spectator</button>
+            <button type="button" onClick={() => setFormData({ ...formData, role: 'victim' })} className={`flex-1 py-3 px-4 rounded-xl font-bold border ${formData.role === 'victim' ? 'border-(--gl-sos-base) text-(--gl-sos-base) bg-(--gl-sos-pulse)' : 'border-(--gl-border-light) text-(--gl-text-main) bg-(--gl-bg-base)'}`}>I am Victim</button>
+            <button type="button" onClick={() => setFormData({ ...formData, role: 'spectator' })} className={`flex-1 py-3 px-4 rounded-xl font-bold border ${formData.role === 'spectator' ? 'border-(--gl-brand-primary) text-(--gl-brand-primary) bg-(--gl-bg-surface-hover)' : 'border-(--gl-border-light) text-(--gl-text-main) bg-(--gl-bg-base)'}`}>I am Spectator</button>
           </div>
-            <h3 className="text-lg font-bold border-b border-gray-100 pb-2 flex items-center gap-2">
-              <LuFileText className="text-blue-600" /> Incident Information
+            <h3 className="text-lg font-bold border-b border-(--gl-border-light) pb-2 flex items-center gap-2">
+              <LuFileText className="text-(--gl-brand-primary)" /> Incident Information
             </h3>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-bold text-gray-700">
+              <label className="text-sm font-bold text-(--gl-text-main)">
                 Crime Category *
               </label>
               <select
                 name="crimeType"
                 value={formData.crimeType}
                 onChange={handleInputChange}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-600"
+                className="w-full bg-(--gl-bg-base) border border-(--gl-border-light) text-(--gl-text-main) rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-(--gl-brand-primary)"
               >
                 <option value="" disabled>
                   Select Category
@@ -238,7 +235,7 @@ const [previews, setPreviews] = useState({ images: [], video: null });
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-bold text-gray-700">
+              <label className="text-sm font-bold text-(--gl-text-main)">
                 Description *
               </label>
               <textarea
@@ -246,17 +243,17 @@ const [previews, setPreviews] = useState({ images: [], video: null });
                 value={formData.description}
                 onChange={handleInputChange}
                 rows={4}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-600 resize-none"
+                className="w-full bg-(--gl-bg-base) border border-(--gl-border-light) text-(--gl-text-main) rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-(--gl-brand-primary) resize-none"
               />
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-bold text-gray-700">
+              <label className="text-sm font-bold text-(--gl-text-main)">
                 Incident Time
               </label>
               <div className="relative">
                 <LuClock
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-(--gl-text-muted)"
                   size={18}
                 />
               
@@ -265,80 +262,80 @@ const [previews, setPreviews] = useState({ images: [], video: null });
                   name="time"
                   value={formData.time}
                   onChange={handleInputChange}
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full pl-10 pr-4 py-3 bg-(--gl-bg-base) border border-(--gl-border-light) text-(--gl-text-main) rounded-xl outline-none focus:ring-2 focus:ring-(--gl-brand-primary)"
                 />
               </div>
             </div>
           </div>
 
          {/* Location Block */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 flex flex-col gap-5 shadow-sm">
-            <h3 className="text-lg font-bold border-b border-gray-100 pb-2 flex items-center gap-2">
-              <LuMapPin className="text-blue-600" /> Location Data *
+          <div className="bg-(--gl-bg-surface) border border-(--gl-border-light) rounded-2xl p-6 flex flex-col gap-5 shadow-sm">
+            <h3 className="text-lg font-bold border-b border-(--gl-border-light) pb-2 flex items-center gap-2">
+              <LuMapPin className="text-(--gl-brand-primary)" /> Location Data *
             </h3>
 
             {!showMap ? (
               <div className="flex flex-col gap-3">
-                <input type="text" name="location" value={formData.location} onChange={handleInputChange} placeholder="Address or coordinates (lat, lng)" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-600" />
+                <input type="text" name="location" value={formData.location} onChange={handleInputChange} placeholder="Address or coordinates (lat, lng)" className="w-full bg-(--gl-bg-base) border border-(--gl-border-light) text-(--gl-text-main) rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-(--gl-brand-primary)" />
                 <div className="flex items-center gap-3">
-                  <button type="button" onClick={handleGetCurrentLocation} className="text-sm font-bold text-blue-600 hover:underline flex items-center gap-1">
+                  <button type="button" onClick={handleGetCurrentLocation} className="text-sm font-bold text-(--gl-brand-primary) hover:underline flex items-center gap-1">
                     <LuMapPin size={16} /> Use Current Location
                   </button>
-                  <span className="text-gray-400 text-sm">or</span>
-                  <button type="button" onClick={() => setShowMap(true)} className="text-sm font-bold text-blue-600 hover:underline">Choose from Map</button>
+                  <span className="text-(--gl-text-muted) text-sm">or</span>
+                  <button type="button" onClick={() => setShowMap(true)} className="text-sm font-bold text-(--gl-brand-primary) hover:underline">Choose from Map</button>
                 </div>
               </div>
             ) : (
-              <div className="flex flex-col h-[300px] w-full relative rounded-xl overflow-hidden border border-gray-200">
+              <div className="flex flex-col h-[300px] w-full relative rounded-xl overflow-hidden border border-(--gl-border-light)">
                 <div className="flex-1 w-full relative z-0">
                   <MapContainer center={[mapCenter.lat, mapCenter.lng]} zoom={16} zoomControl={false} className="w-full h-full absolute inset-0">
                     <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
                     <MapDragTracker onDragEnd={fetchAddress} />
                   </MapContainer>
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000] pointer-events-none drop-shadow-xl pb-6">
-                    <LuMapPin size={40} className="text-red-500" fill="white" />
+                    <LuMapPin size={40} className="text-(--gl-sos-base)" fill="white" />
                   </div>
                 </div>
-                <div className="bg-white p-3 z-10 border-t border-gray-200">
-                  <p className="text-xs text-gray-500">{isResolvingAddress ? 'Translating...' : geocodedAddress}</p>
-                  <button type="button" onClick={() => setShowMap(false)} className="w-full mt-2 p-2 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700">Confirm Location</button>
+                <div className="bg-(--gl-bg-surface) p-3 z-10 border-t border-(--gl-border-light)">
+                  <p className="text-xs text-(--gl-text-muted)">{isResolvingAddress ? 'Translating...' : geocodedAddress}</p>
+                  <button type="button" onClick={() => setShowMap(false)} className="w-full mt-2 p-2 bg-(--gl-brand-primary) text-(--gl-text-inverse) font-bold rounded-lg hover:opacity-90">Confirm Location</button>
                 </div>
               </div>
             )}
           </div>
 
          {/* Media Block */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 flex flex-col gap-5 shadow-sm">
-            <h3 className="text-lg font-bold border-b border-gray-100 pb-2 flex items-center gap-2">
-              <LuImage className="text-blue-600" /> Attach Evidence
+          <div className="bg-(--gl-bg-surface) border border-(--gl-border-light) rounded-2xl p-6 flex flex-col gap-5 shadow-sm">
+            <h3 className="text-lg font-bold border-b border-(--gl-border-light) pb-2 flex items-center gap-2">
+              <LuImage className="text-(--gl-brand-primary)" /> Attach Evidence
             </h3>
             
             <div className="flex gap-4 shrink-0">
-              <label className={`flex-1 border-2 border-dashed border-gray-300 rounded-xl p-4 flex flex-col items-center justify-center text-center transition-colors ${formData.images.length >= 5 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:bg-gray-50'}`}>
+              <label className={`flex-1 border-2 border-dashed border-(--gl-border-light) rounded-xl p-4 flex flex-col items-center justify-center text-center transition-colors ${formData.images.length >= 5 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:bg-(--gl-bg-surface-hover)'}`}>
                 <input type="file" accept="image/*" multiple className="hidden" disabled={formData.images.length >= 5} onChange={handleImageChange} />
-                <LuImage size={24} className="text-gray-400" />
-                <span className="text-sm font-bold text-gray-700 mt-2">Add Image</span>
+                <LuImage size={24} className="text-(--gl-text-muted)" />
+                <span className="text-sm font-bold text-(--gl-text-main) mt-2">Add Image</span>
               </label>
 
-              <label className={`flex-1 border-2 border-dashed border-gray-300 rounded-xl p-4 flex flex-col items-center justify-center text-center transition-colors ${formData.video ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:bg-gray-50'}`}>
+              <label className={`flex-1 border-2 border-dashed border-(--gl-border-light) rounded-xl p-4 flex flex-col items-center justify-center text-center transition-colors ${formData.video ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:bg-(--gl-bg-surface-hover)'}`}>
                 <input type="file" accept="video/*" className="hidden" disabled={formData.video} onChange={handleVideoChange} />
-                <LuVideo size={24} className="text-gray-400" />
-                <span className="text-sm font-bold text-gray-700 mt-2">Add Video</span>
+                <LuVideo size={24} className="text-(--gl-text-muted)" />
+                <span className="text-sm font-bold text-(--gl-text-main) mt-2">Add Video</span>
               </label>
             </div>
 
             {/* Media Previews */}
             <div className="flex flex-wrap gap-3">
               {previews.images.map((url, i) => (
-                <div key={i} className="relative w-16 h-16 rounded-lg overflow-hidden border border-gray-200">
+                <div key={i} className="relative w-16 h-16 rounded-lg overflow-hidden border border-(--gl-border-light)">
                   <img src={url} alt="upload" className="w-full h-full object-cover" />
-                  <button type="button" onClick={() => removeImage(i)} className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1"><LuTrash2 size={12} /></button>
+                  <button type="button" onClick={() => removeImage(i)} className="absolute top-1 right-1 bg-(--gl-sos-base) text-(--gl-text-inverse) rounded-full p-1"><LuTrash2 size={12} /></button>
                 </div>
               ))}
               {previews.video && (
-                <div className="relative w-16 h-16 rounded-lg overflow-hidden border border-gray-200 bg-black flex items-center justify-center">
-                  <LuVideo size={24} className="text-white" />
-                  <button type="button" onClick={removeVideo} className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1"><LuTrash2 size={12} /></button>
+                <div className="relative w-16 h-16 rounded-lg overflow-hidden border border-(--gl-border-light) bg-black flex items-center justify-center">
+                  <LuVideo size={24} className="text-(--gl-text-inverse)" />
+                  <button type="button" onClick={removeVideo} className="absolute top-1 right-1 bg-(--gl-sos-base) text-(--gl-text-inverse) rounded-full p-1"><LuTrash2 size={12} /></button>
                 </div>
               )}
             </div>
@@ -348,7 +345,7 @@ const [previews, setPreviews] = useState({ images: [], video: null });
             <button
               type="submit"
               disabled={!isFormValid || isSubmitting}
-              className={`w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2 ${isFormValid ? "bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/20 cursor-pointer" : "bg-gray-200 text-gray-400 cursor-not-allowed"}`}
+              className={`w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2 ${isFormValid ? "bg-(--gl-brand-primary) hover:bg-(--gl-brand-hover) text-(--gl-text-inverse) shadow-lg shadow-blue-500/20 cursor-pointer" : "bg-(--gl-bg-surface-hover) text-(--gl-text-muted) cursor-not-allowed"}`}
             >
               {isSubmitting ? "Submitting Report..." : "Submit Official Report"}
             </button>
@@ -358,28 +355,28 @@ const [previews, setPreviews] = useState({ images: [], video: null });
 
       {modalState.show && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl w-full max-w-md p-6 border border-gray-200 shadow-2xl">
+          <div className="bg-(--gl-bg-surface) rounded-2xl w-full max-w-md p-6 border border-(--gl-border-light) shadow-2xl">
             <div className="flex flex-col items-center text-center gap-4">
               {modalState.type === "success" ? (
-                <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-2">
+                <div className="w-16 h-16 bg-(--gl-status-success)/20 text-(--gl-status-success) rounded-full flex items-center justify-center mb-2">
                   <LuCircleCheck size={32} />
                 </div>
               ) : (
-                <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-2">
+                <div className="w-16 h-16 bg-(--gl-sos-pulse) text-(--gl-sos-base) rounded-full flex items-center justify-center mb-2">
                   <LuCircleX size={32} />
                 </div>
               )}
-              <h2 className="text-2xl font-bold font-integral">
+              <h2 className="text-2xl font-bold font-integral text-(--gl-text-main)">
                 {modalState.type === "success"
                   ? "Report Submitted"
                   : "Submission Failed"}
               </h2>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-(--gl-text-muted) leading-relaxed">
                 {modalState.message}
               </p>
               <button
                 onClick={closeModal}
-                className="w-full mt-4 py-3 bg-gray-100 border border-gray-200 rounded-xl font-bold hover:bg-blue-600 hover:text-white transition-colors"
+                className="w-full mt-4 py-3 bg-(--gl-bg-base) border border-(--gl-border-light) text-(--gl-text-main) rounded-xl font-bold hover:bg-(--gl-brand-primary) hover:text-(--gl-text-inverse) transition-colors"
               >
                 {modalState.type === "success"
                   ? "Go to Dashboard"

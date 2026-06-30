@@ -121,7 +121,7 @@ export default function MyReports() {
   };
 
   return (
-    <div className="h-full w-full">
+    <div className="h-[84dvh] md:h-[90dvh] w-full">
       {/* Top Navigation Bar */}
       <div className="sticky top-0 z-40 bg-(--gl-bg-base)/90 backdrop-blur-md border-b border-(--gl-border-light) px-5 sm:px-8 py-4  flex items-center justify-between">
         <h1 className="text-2xl md:text-3xl font-integral font-bold text-(--gl-text-main) mb-2">
@@ -177,7 +177,7 @@ export default function MyReports() {
 
         {/* Responsive List View */}
         {!isLoading && !error && (
-          <div className="flex flex-col gap-3 md:gap-4 overflow-y-auto pb-10">
+          <div className="flex flex-col gap-3 md:gap-4 overflow-y-auto pb-10 px-4">
             {displayReports.length === 0 ? (
               <div className="text-center py-12 md:py-20 text-(--gl-text-muted)">
                 <LuShieldAlert size={48} className="mx-auto mb-4 opacity-50" />
